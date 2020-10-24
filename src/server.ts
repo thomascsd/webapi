@@ -3,6 +3,7 @@ import { useExpressServer, useContainer } from 'routing-controllers';
 import { Container } from 'typedi';
 import * as logger from 'morgan';
 import * as helmet from 'helmet';
+import * as cors from 'cors';
 
 export default class Server {
   public app: express.Application;
@@ -18,6 +19,7 @@ export default class Server {
   public config() {
     this.app.use(logger('combined'));
     this.app.use(helmet());
+    this.app.use(cors());
   }
 
   public route() {
@@ -27,7 +29,7 @@ export default class Server {
   public setControllers() {
     useExpressServer(this.app, {
       routePrefix: 'api',
-      controllers: [ContactController],
+      // controllers: [ContactController],
     });
   }
 
