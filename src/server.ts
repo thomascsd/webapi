@@ -29,7 +29,8 @@ export default class Server {
   public setControllers() {
     useExpressServer(this.app, {
       routePrefix: 'api',
-      // controllers: [ContactController],
+      controllers: [__dirname + "/controllers/**/*.js"],
+      middlewares: [__dirname + "/middlewares/**/*.js"],
     });
   }
 
