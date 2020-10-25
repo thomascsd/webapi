@@ -12,7 +12,6 @@ export default class Server {
     useContainer(Container);
     this.app = express();
     this.config();
-    this.route();
     this.setControllers();
   }
 
@@ -22,15 +21,11 @@ export default class Server {
     this.app.use(cors());
   }
 
-  public route() {
-    this.app.get('*', (req, res, next) => {});
-  }
-
   public setControllers() {
     useExpressServer(this.app, {
       routePrefix: 'api',
-      controllers: [__dirname + "/controllers/**/*.js"],
-      middlewares: [__dirname + "/middlewares/**/*.js"],
+      controllers: [__dirname + '/controllers/**/*.js'],
+      middlewares: [__dirname + '/middlewares/**/*.js'],
     });
   }
 
