@@ -1,17 +1,25 @@
-require('dotenv').config({ path: __dirname + '/.env' });
 import 'reflect-metadata';
-const port: number = parseInt(process.env.PORT, 10) || 3000;
-
+import { loadEnv } from '@thomascsd/stools';
 import Fastify from 'fastify';
 import { bootstrap } from 'fastify-decorators';
-import { resolve } from 'path';
+import { useContainer } from '@fastify-decorators/typedi';
+import { Container } from 'typedi';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const port: number = parseInt(process.env.PORT, 10) || 3000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+useContainer(Container);
+loadEnv();
 
 let server = Fastify({
   logger: true,
 });
 
 server.register(bootstrap, {
-  directory: resolve(__dirname, 'controllers'),
+  directory: path.resolve(__dirname, 'controllers'),
   mask: /\.controller\./,
 });
 
