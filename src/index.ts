@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import { loadEnv } from '@thomascsd/stools';
 import Fastify from 'fastify';
 import { bootstrap } from 'fastify-decorators';
 import { useContainer } from '@fastify-decorators/typedi';
+import fastifyEnv from 'fastify-env';
 import { Container } from 'typedi';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -12,10 +12,24 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 useContainer(Container);
-loadEnv();
 
 let server = Fastify({
   logger: true,
+});
+
+server.register(fastifyEnv, {
+  confKey: 'config',
+  schema: {
+    type: 'object',
+    require: ['AIRTABLE_API'],
+    properties: {
+      AIRTABLE_API: {
+        type: 'string',
+      },
+    },
+  },
+  dotenv: true,
+  data: process.env,
 });
 
 server.register(bootstrap, {
