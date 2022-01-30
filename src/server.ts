@@ -1,9 +1,9 @@
-import * as express from 'express';
+import express from 'express';
 import { useExpressServer, useContainer } from 'routing-controllers';
 import { Container } from 'typedi';
-import * as logger from 'morgan';
-import * as helmet from 'helmet';
-import * as cors from 'cors';
+import logger from 'morgan';
+import helmet from 'helmet';
+import cors from 'cors';
 
 export default class Server {
   public app: express.Application;
