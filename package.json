@@ -1,7 +1,7 @@
 {
   "name": "webapi",
   "version": "1.0.0",
-  "description": "",
+  "description": "My Web Api",
   "main": "index.js",
   "scripts": {
     "start": "node ./dist/index.js",
