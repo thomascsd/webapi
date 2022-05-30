@@ -11,17 +11,17 @@ export class Contact extends BaseModel {
   @IsNotEmpty({
     message: '姓名為必需填寫',
   })
-  name: string;
+  name: string = '';
 
   @IsNotEmpty({
     message: 'Email為必需填寫',
   })
   @IsEmail()
-  email: string;
+  email: string = '';
 
   @IsNotEmpty({
     message: '手機為必需填寫',
   })
   @IsMobilePhone('zh-TW')
-  mobile: string;
+  mobile: string = '';
 }

@@ -1,17 +1,14 @@
 {
+  "extends": "@tsconfig/node16/tsconfig.json",
   "compileOnSave": false,
   "compilerOptions": {
-    "module": "esnext",
     "outDir": "./dist/",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ESNext",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["ESNext"]
+    "typeRoots": ["node_modules/@types"]
   },
   "baseUrl": "src"
 }

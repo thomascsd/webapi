@@ -3,7 +3,7 @@ import { Inject } from 'typedi';
 import { ContactService } from '../services/ContactServices.js';
 import { Contact } from '../models/Contact';
 
-@Inject()
+@Inject('ContactController')
 @JsonController()
 export class ContactController {
   constructor(private contactService: ContactService) {}

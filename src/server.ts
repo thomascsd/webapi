@@ -1,12 +1,19 @@
 import express from 'express';
+//var express = require('express');
 import { useExpressServer, useContainer } from 'routing-controllers';
 import { Container } from 'typedi';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import logger from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+
 export default class Server {
   public app: express.Application;
+  // public app: any;
 
   constructor() {
     useContainer(Container);
