@@ -1,5 +1,6 @@
+import { BaseModel } from '@thomascsd/stools';
 import { Customer } from './customer';
-export class Trainer {
+export class Trainer extends BaseModel {
   ownerId: string = '';
   name: string = '';
   mobile: string = '';

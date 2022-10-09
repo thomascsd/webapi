@@ -1,10 +1,12 @@
+import { BaseModel } from '@thomascsd/stools';
 import { Trainer } from './trainer';
-export class Customer {
+export class Customer extends BaseModel {
   ownerId: string = '';
   name: string = '';
   mobile: string = '';
-  trainer: Trainer = new Trainer();
   meno: string = '';
+  trainerId: string = '';
   createUser: string = '';
   createTime: Date = new Date();
+  trainer: Trainer = new Trainer();
 }
