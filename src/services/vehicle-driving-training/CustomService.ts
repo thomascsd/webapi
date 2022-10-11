@@ -3,7 +3,7 @@ import { Inject } from 'typedi';
 import { Customer } from '../../models/vehicle-driving-training/customer';
 import { Trainer } from '../../models/vehicle-driving-training/trainer';
 
-const BASE_ID = '';
+const BASE_ID = 'appGxC02yunTmPXRh';
 
 @Inject()
 export class CustomerService {

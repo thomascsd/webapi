@@ -4,6 +4,7 @@ export class Customer extends BaseModel {
   ownerId: string = '';
   name: string = '';
   mobile: string = '';
+  birthday: Date = new Date();
   meno: string = '';
   trainerId: string = '';
   createUser: string = '';
