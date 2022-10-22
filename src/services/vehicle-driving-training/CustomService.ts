@@ -1,7 +1,6 @@
 import { DataService } from '@thomascsd/stools';
 import { Inject } from 'typedi';
-import { Customer } from '../../models/vehicle-driving-training/customer';
-import { Trainer } from '../../models/vehicle-driving-training/trainer';
+import { Customer, Trainer } from '../../models/vehicle-driving-training';
 
 const BASE_ID = 'appGxC02yunTmPXRh';
 
@@ -24,5 +23,9 @@ export class CustomerService {
   }
   async saveCustomer(customer: Customer) {
     await this.db.saveData(BASE_ID, 'customer', customer);
+  }
+
+  async updateCustomer(customer: Customer) {
+    await this.db.updateData(BASE_ID, 'customer', customer);
   }
 }
