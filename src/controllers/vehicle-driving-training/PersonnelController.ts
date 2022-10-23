@@ -4,7 +4,7 @@ import { Customer, Trainer } from '../../models/vehicle-driving-training';
 import { CustomerService } from '../../services/vehicle-driving-training/CustomService';
 import { TrainerService } from '../../services/vehicle-driving-training/TrainerService';
 
-@Inject()
+@Inject('PersonnelController')
 @JsonController()
 export class PersonnelController {
   constructor(private customerService: CustomerService, private trainerService: TrainerService) {}

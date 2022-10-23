@@ -1,10 +1,10 @@
 import { DataService } from '@thomascsd/stools';
-import { Inject } from 'typedi';
+import { Inject, Service } from 'typedi';
 import { Customer, Trainer } from '../../models/vehicle-driving-training';
 
 const BASE_ID = 'appGxC02yunTmPXRh';
 
-@Inject()
+@Service()
 export class CustomerService {
   constructor(private db: DataService) {}
   async getCustomers(): Promise<Customer[]> {
