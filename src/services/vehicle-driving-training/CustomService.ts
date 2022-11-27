@@ -1,5 +1,5 @@
 import { DataService } from '@thomascsd/stools';
-import { Inject, Service } from 'typedi';
+import { Service } from 'typedi';
 import { Customer, Trainer } from '../../models/vehicle-driving-training';
 
 const BASE_ID = 'appGxC02yunTmPXRh';
