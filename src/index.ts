@@ -6,5 +6,5 @@ require('dotenv').config({
 });
 
 const server = new Server();
-const port: number = parseInt(process.env.PORT || '3000', 10);
+const port: number = parseInt(process.env.PORT || '8080', 10);
 server.run(port);
