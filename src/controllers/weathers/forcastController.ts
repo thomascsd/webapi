@@ -7,12 +7,12 @@ import { ForecastService } from '../../services/weathers/forecastService';
 export class ForecastController {
   constructor(private forecastService: ForecastService) {}
 
-  @Get('/forecast/getDays')
+  @Get('/forecast/days')
   getDays(@QueryParam('lat') lat: number, @QueryParam('lon') lon: number) {
     return this.forecastService.getDays(lat, lon);
   }
 
-  @Get('/forecast/getLocation')
+  @Get('/forecast/location')
   getLocation(@QueryParam('city') city: string) {
     return this.forecastService.getLocation(city);
   }
