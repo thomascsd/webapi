@@ -12,12 +12,12 @@ const fileUploadOptions = {
 export class ImageFileController {
   constructor(private fileService: ImageFileService) {}
 
-  @Post('/images/Upload')
+  @Post('/images/upload')
   upload(@UploadedFile('fileData', { options: fileUploadOptions }) file: Express.Multer.File) {
     return this.fileService.upload(file);
   }
 
-  @Get('/Image/Files')
+  @Get('/images/files')
   getFiles() {
     return this.fileService.getFiles();
   }

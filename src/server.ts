@@ -10,6 +10,7 @@ import { Container } from 'typedi';
 import logger from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
+import { API_KEY_TOKEN } from '@thomascsd/stools';
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
@@ -38,6 +39,8 @@ export default class Server {
     this.app.use(logger('combined'));
     this.app.use(helmet());
     this.app.use(cors());
+
+    Container.set(API_KEY_TOKEN, process.env.AIRTABLE_API);
   }
 
   setControllers() {

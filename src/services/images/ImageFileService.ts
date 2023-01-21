@@ -12,21 +12,14 @@ export class ImageFileService {
 
   async upload(fileData: Express.Multer.File) {
     const imageFile = new ImageFile();
-    // const path = join(process.cwd(), fileData.path);
-
-    // rmSync(path, {
-    //   force: true,
-    // });
+    const buffer = fileData.buffer;
+    const image64 = buffer.toString('base64');
+    const dataUrl = `data:image/jpeg;base64,${image64}`;
 
     imageFile.filename = fileData.originalname;
     imageFile.mimetype = fileData.mimetype;
     imageFile.size = fileData.size;
-    imageFile.file = [
-      {
-        url: `${process.env.IMAGE_URL_DOMAIN}/${fileData.destination}/${fileData.filename}`,
-        filename: fileData.originalname,
-      },
-    ];
+    imageFile.content = dataUrl;
     const res = await this.db.saveData<ImageFile>('appEyFL0S9APmWraC', 'imageFile', imageFile);
 
     return res;
