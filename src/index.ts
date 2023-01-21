@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import Server from './server.js';
+import Server from './server';
 
 require('dotenv').config({
-  path: 'dist/.env',
+  path: '.env',
 });
 
 const server = new Server();
