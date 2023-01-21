@@ -1,5 +1,5 @@
-import { JsonController, Get, Post, UploadedFile } from 'routing-controllers';
-import { Service } from 'typedi';
+import { JsonController, Get, Post, UploadedFile } from 'routing-controllers-extended';
+import { Inject, Service } from 'typedi';
 import * as multer from 'multer';
 import { ImageFileService } from '../../services/images/ImageFileService';
 
@@ -7,8 +7,8 @@ const fileUploadOptions = {
   storage: multer.memoryStorage(),
 };
 
-@JsonController()
 @Service()
+@JsonController()
 export class ImageFileController {
   constructor(private fileService: ImageFileService) {}
 

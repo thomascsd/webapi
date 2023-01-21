@@ -1,8 +1,8 @@
-import { Inject } from 'typedi';
+import { Service } from 'typedi';
 import { DataService } from '@thomascsd/stools';
 import { ImageFile } from '../../models/images/ImageFile';
 
-@Inject()
+@Service()
 export class ImageFileService {
   constructor(private db: DataService) {}
 
@@ -14,12 +14,12 @@ export class ImageFileService {
     const imageFile = new ImageFile();
     const buffer = fileData.buffer;
     const image64 = buffer.toString('base64');
-    const dataUrl = `data:image/jpeg;base64,${image64}`;
+    const dataUrl = `data:${fileData.mimetype};base64,${image64}`;
 
     imageFile.filename = fileData.originalname;
     imageFile.mimetype = fileData.mimetype;
     imageFile.size = fileData.size;
-    imageFile.content = dataUrl;
+    imageFile.imageContent = dataUrl;
     const res = await this.db.saveData<ImageFile>('appEyFL0S9APmWraC', 'imageFile', imageFile);
 
     return res;

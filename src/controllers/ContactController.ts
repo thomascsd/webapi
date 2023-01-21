@@ -1,4 +1,4 @@
-import { JsonController, Get, Post, Body } from 'routing-controllers';
+import { JsonController, Get, Post, Body } from 'routing-controllers-extended';
 import { Inject } from 'typedi';
 import { ContactService } from '../services/ContactServices.js';
 import { Contact } from '../models/Contact';

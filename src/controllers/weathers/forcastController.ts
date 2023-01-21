@@ -1,5 +1,5 @@
-import { JsonController, Get, QueryParam } from 'routing-controllers';
-import { Service } from 'typedi';
+import { JsonController, Get, QueryParam } from 'routing-controllers-extended';
+import { Inject, Service } from 'typedi';
 import { ForecastService } from '../../services/weathers/forecastService';
 
 @Service()
