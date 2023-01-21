@@ -1,4 +1,4 @@
-import { BaseModel } from '@thomascsd/stools';
+import { BaseModel } from '@thomascsd/stools-models';
 import { Customer } from './customer';
 export class Trainer extends BaseModel {
   ownerId: string = '';
