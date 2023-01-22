@@ -1,10 +1,23 @@
-import 'reflect-metadata';
+import { $log } from '@tsed/common';
+import { PlatformExpress } from '@tsed/platform-express';
 import Server from './server';
+import dotenv from 'dotenv';
+import 'reflect-metadata';
 
-require('dotenv').config({
+const config = dotenv.config({
   path: '.env',
 });
 
-const server = new Server();
-const port: number = parseInt(process.env.PORT || '8080', 10);
-server.run(port);
+async function bootstrap() {
+  try {
+    $log.debug('Start server...');
+    const platform = await PlatformExpress.bootstrap(Server, config.parsed);
+
+    await platform.listen();
+    $log.debug('Server initialized');
+  } catch (er) {
+    $log.error(er);
+  }
+}
+
+bootstrap();
