@@ -1,19 +1,19 @@
-import { JsonController, Get, QueryParam } from 'routing-controllers-extended';
-import { Inject, Service } from 'typedi';
+import { QueryParams } from '@tsed/common';
+import { Controller } from '@tsed/di';
+import { Get } from '@tsed/schema';
 import { ForecastService } from '../../services/weathers/forecastService';
 
-@Service()
-@JsonController()
+@Controller('/forecast')
 export class ForecastController {
   constructor(private forecastService: ForecastService) {}
 
-  @Get('/forecast/days')
-  getDays(@QueryParam('lat') lat: number, @QueryParam('lon') lon: number) {
+  @Get('/days')
+  getDays(@QueryParams('lat') lat: number, @QueryParams('lon') lon: number) {
     return this.forecastService.getDays(lat, lon);
   }
 
-  @Get('/forecast/location')
-  getLocation(@QueryParam('city') city: string) {
+  @Get('/location')
+  getLocation(@QueryParams('city') city: string) {
     return this.forecastService.getLocation(city);
   }
 }

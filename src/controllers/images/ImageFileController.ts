@@ -1,23 +1,18 @@
-import { JsonController, Get, Post, UploadedFile } from 'routing-controllers-extended';
-import { Inject, Service } from 'typedi';
-import * as multer from 'multer';
+import { MultipartFile, PlatformMulterFile } from '@tsed/common';
+import { Controller } from '@tsed/di';
+import { Get, Post } from '@tsed/schema';
 import { ImageFileService } from '../../services/images/ImageFileService';
 
-const fileUploadOptions = {
-  storage: multer.memoryStorage(),
-};
-
-@Service()
-@JsonController()
+@Controller('/images')
 export class ImageFileController {
   constructor(private fileService: ImageFileService) {}
 
-  @Post('/images/upload')
-  upload(@UploadedFile('fileData', { options: fileUploadOptions }) file: Express.Multer.File) {
+  @Post('/upload')
+  upload(@MultipartFile('fileData') file: PlatformMulterFile[]) {
     return this.fileService.upload(file);
   }
 
-  @Get('/images/files')
+  @Get('/files')
   getFiles() {
     return this.fileService.getFiles();
   }

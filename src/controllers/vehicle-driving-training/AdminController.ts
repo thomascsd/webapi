@@ -1,8 +1,7 @@
-import { JsonController, Get, Post, Body } from 'routing-controllers-extended';
-import { Service } from 'typedi';
+import { Controller } from '@tsed/di';
+import { Get, Post } from '@tsed/schema';
 
-@Service()
-@JsonController()
+@Controller('/user')
 export class AdminController {
   constructor() {}
 
@@ -12,9 +11,9 @@ export class AdminController {
   @Get('/users')
   getUsers() {}
 
-  @Post('user/add')
+  @Post('/add')
   addUser() {}
 
-  @Post('user/update')
+  @Post('/update')
   updateUser() {}
 }

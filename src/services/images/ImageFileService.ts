@@ -1,6 +1,7 @@
 import { Service } from 'typedi';
-import { DataService } from '@thomascsd/stools';
+import { DataService } from '../DataService';
 import { ImageFile } from '../../models/images/ImageFile';
+import { PlatformMulterFile } from '@tsed/common';
 
 @Service()
 export class ImageFileService {
@@ -10,7 +11,8 @@ export class ImageFileService {
     return this.db.getDatas<ImageFile>('appEyFL0S9APmWraC', 'imageFile');
   }
 
-  async upload(fileData: Express.Multer.File) {
+  async upload(fileDatas: PlatformMulterFile[]) {
+    const fileData = fileDatas[0];
     const imageFile = new ImageFile();
     const buffer = fileData.buffer;
     const image64 = buffer.toString('base64');

@@ -1,4 +1,4 @@
-import { DataService } from '@thomascsd/stools';
+import { DataService } from '../DataService';
 import { Service } from 'typedi';
 import { Customer, Trainer } from '../../models/vehicle-driving-training';
 

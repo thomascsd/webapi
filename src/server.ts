@@ -1,17 +1,22 @@
 import { Configuration, Inject } from '@tsed/di';
 import { PlatformApplication } from '@tsed/common';
-
+import { ApiController } from './controllers/ApiController';
+import * as multer from 'multer';
 import helmet from 'helmet';
 import cors from 'cors';
+import { Container } from 'typedi';
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 
 @Configuration({
   mount: {
-    '/api': [],
+    '/': [ApiController],
   },
-  httpPort: 8080,
+  httpPort: '127.0.0.1:8080',
+  multer: {
+    storage: multer.memoryStorage(),
+  },
 })
 export default class Server {
   @Inject()

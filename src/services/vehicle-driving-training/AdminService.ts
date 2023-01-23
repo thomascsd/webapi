@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Service } from '@tsed/di';
 
 @Service()
 export class AdminService {

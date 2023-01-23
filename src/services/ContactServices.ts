@@ -1,5 +1,5 @@
-import { DataService } from '@thomascsd/stools';
-import { Service } from 'typedi';
+import { DataService } from './DataService';
+import { Service } from '@tsed/di';
 import { Contact } from '../models/Contact';
 
 const BASE_ID = 'appLdD9UKehdDawCn';

@@ -1,25 +1,25 @@
-import { JsonController, Get, Post, Body } from 'routing-controllers-extended';
-import { Inject } from 'typedi';
-import { ContactService } from '../services/ContactServices.js';
+import { Controller } from '@tsed/di';
+import { Get, Post } from '@tsed/schema';
+import { ContactService } from '../services/ContactServices';
 import { Contact } from '../models/Contact';
+import { BodyParams } from '@tsed/common';
 
-@Inject('ContactController')
-@JsonController()
+@Controller('/contact')
 export class ContactController {
   constructor(private contactService: ContactService) {}
 
-  @Get('/contact/list')
+  @Get('/list')
   getContacts() {
     return this.contactService.getContacts();
   }
 
-  @Post('/contact/save')
-  saveContact(@Body() contact: Contact) {
+  @Post('/save')
+  saveContact(@BodyParams() contact: Contact) {
     return this.contactService.saveContact(contact);
   }
 
-  @Post('/contact/update')
-  update(@Body() contact: Contact) {
+  @Post('/update')
+  update(@BodyParams() contact: Contact) {
     return this.contactService.updateContact(contact);
   }
 }

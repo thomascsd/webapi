@@ -1,25 +1,25 @@
-import { JsonController, Get, Post, Body } from 'routing-controllers-extended';
-import { Inject } from 'typedi';
+import { BodyParams } from '@tsed/common';
+import { Controller } from '@tsed/di';
+import { Get, Post } from '@tsed/schema';
 import { Customer, Trainer } from '../../models/vehicle-driving-training';
 import { CustomerService } from '../../services/vehicle-driving-training/CustomService';
 import { TrainerService } from '../../services/vehicle-driving-training/TrainerService';
 
-@Inject('PersonnelController')
-@JsonController()
+@Controller('/customers')
 export class PersonnelController {
   constructor(private customerService: CustomerService, private trainerService: TrainerService) {}
-  @Get('/customers')
+  @Get()
   getCustomers(): Promise<Customer[]> {
     return this.customerService.getCustomers();
   }
 
-  @Post('/customer/insert')
-  insertCustomer(@Body() customer: Customer) {
+  @Post('/insert')
+  insertCustomer(@BodyParams() customer: Customer) {
     return this.customerService.saveCustomer(customer);
   }
 
-  @Post('/customer/update')
-  updateCustomer(@Body() customer: Customer) {
+  @Post('/update')
+  updateCustomer(@BodyParams() customer: Customer) {
     return this.customerService.updateCustomer(customer);
   }
 
@@ -28,7 +28,7 @@ export class PersonnelController {
     return this.trainerService.getTrainers();
   }
 
-  insertTrainer(@Body() trainer: Trainer) {
+  insertTrainer(@BodyParams() trainer: Trainer) {
     return this.trainerService.saveTrainer(trainer);
   }
 }
