@@ -4,7 +4,7 @@ import { ApiController } from './controllers/ApiController';
 import * as multer from 'multer';
 import helmet from 'helmet';
 import cors from 'cors';
-import { Container } from 'typedi';
+import '@tsed/swagger';
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
@@ -17,6 +17,12 @@ import { Container } from 'typedi';
   multer: {
     storage: multer.memoryStorage(),
   },
+  swagger: [
+    {
+      path: '/docs',
+      specVersion: '3.0.1',
+    },
+  ],
 })
 export default class Server {
   @Inject()
@@ -26,34 +32,4 @@ export default class Server {
     this.app.use(helmet());
     this.app.use(cors());
   }
-
-  setApiDoc() {
-    // const schemas = validationMetadatasToSchemas({
-    //   refPointerPrefix: '#/components/schemas/',
-    // });
-    // const storage = getMetadataArgsStorage();
-    // const spec = routingControllersToSpec(storage, routingControllerOptions, {
-    //   components: {
-    //     schemas,
-    //     securitySchemes: {
-    //       basicAuth: {
-    //         scheme: 'basic',
-    //         type: 'http',
-    //       },
-    //     },
-    //   },
-    //   info: {
-    //     description: '',
-    //     title: 'webapi',
-    //     version: '1.0.0',
-    //   },
-    // });
-    // this.app.use('/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
-  }
-
-  // run(port: number) {
-  //   this.app.listen(port, () => {
-  //     console.log(`App run in Port: ${port}`);
-  //   });
-  // }
 }
