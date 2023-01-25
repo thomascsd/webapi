@@ -1,7 +1,7 @@
 import { Service } from 'typedi';
+import { PlatformMulterFile } from '@tsed/common';
 import { DataService } from '../DataService';
 import { ImageFile } from '../../models/images/ImageFile';
-import { PlatformMulterFile } from '@tsed/common';
 
 @Service()
 export class ImageFileService {
@@ -16,13 +16,39 @@ export class ImageFileService {
     const imageFile = new ImageFile();
     const buffer = fileData.buffer;
     const image64 = buffer.toString('base64');
-    const dataUrl = `data:${fileData.mimetype};base64,${image64}`;
+    const length = 500;
+    let dataUrl = `data:${fileData.mimetype};base64,${image64}`;
+    let i = 0;
+    let columnIdex = 1;
+    let content = '';
 
     imageFile.filename = fileData.originalname;
     imageFile.mimetype = fileData.mimetype;
     imageFile.size = fileData.size;
-    imageFile.imageContent = dataUrl;
-    const res = await this.db.saveData<ImageFile>('appEyFL0S9APmWraC', 'imageFile', imageFile);
+
+    while (true) {
+      if (dataUrl.length >= length) {
+        content = dataUrl.substring(i, length);
+
+        dataUrl = dataUrl.substring(i + length);
+      }
+
+      imageFile['content' + columnIdex] = content;
+
+      i += length;
+      columnIdex += 1;
+
+      if (dataUrl.length < length) {
+        break;
+      }
+    }
+
+    const res = await this.db.saveData<ImageFile>(
+      'appEyFL0S9APmWraC',
+      'imageFile',
+      imageFile,
+      true
+    );
 
     return res;
   }

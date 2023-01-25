@@ -3,5 +3,8 @@ export class ImageFile extends BaseModel {
   filename: string = '';
   size: number = 0;
   mimetype: string = '';
-  imageContent = '';
+  content1 = '';
+  content2 = '';
+  content3 = '';
+  content4 = '';
 }

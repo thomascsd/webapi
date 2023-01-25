@@ -55,10 +55,11 @@ export class DataService {
   async saveData<T extends BaseModel>(
     baseId: string,
     tableName: string,
-    model: T
+    model: T,
+    typecast?: boolean | undefined
   ): Promise<AirtableRecord> {
     const airtable = this.getAirTableClient(baseId);
-    const body = await airtable.createRecord(tableName, model);
+    const body = await airtable.createRecord(tableName, model, typecast);
     return body;
   }
 
