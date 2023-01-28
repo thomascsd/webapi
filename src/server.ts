@@ -1,9 +1,12 @@
 import { Configuration, Inject } from '@tsed/di';
 import { PlatformApplication } from '@tsed/common';
-import { ApiController } from './controllers/ApiController';
 import * as multer from 'multer';
 import helmet from 'helmet';
 import cors from 'cors';
+import bodyParser from 'body-parser';
+import { ApiController } from './controllers/ApiController';
+import { ClassTransformerPipe } from './pipes/ClassTransformerPipe';
+import { ClassValidationPipe } from './pipes/ClassValidationPipe';
 import '@tsed/swagger';
 
 // const __filename = fileURLToPath(import.meta.url);
@@ -23,6 +26,7 @@ import '@tsed/swagger';
       specVersion: '3.0.1',
     },
   ],
+  imports: [ClassValidationPipe, ClassTransformerPipe],
 })
 export default class Server {
   @Inject()
@@ -31,5 +35,6 @@ export default class Server {
   public $beforeRoutesInit(): void | Promise<any> {
     this.app.use(helmet());
     this.app.use(cors());
+    this.app.use(bodyParser.json());
   }
 }
