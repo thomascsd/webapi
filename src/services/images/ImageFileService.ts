@@ -25,23 +25,24 @@ export class ImageFileService {
     imageFile.filename = fileData.originalname;
     imageFile.mimetype = fileData.mimetype;
     imageFile.size = fileData.size;
+    imageFile.content = '';
 
-    while (true) {
-      if (dataUrl.length >= length) {
-        content = dataUrl.substring(i, length);
+    // while (true) {
+    //   if (dataUrl.length >= length) {
+    //     content = dataUrl.substring(i, length);
 
-        dataUrl = dataUrl.substring(i + length);
-      }
+    //     dataUrl = dataUrl.substring(i + length);
+    //   }
 
-      imageFile['content' + columnIdex] = content;
+    //   imageFile['content' + columnIdex] = content;
 
-      i += length;
-      columnIdex += 1;
+    //   i += length;
+    //   columnIdex += 1;
 
-      if (dataUrl.length < length) {
-        break;
-      }
-    }
+    //   if (dataUrl.length < length) {
+    //     break;
+    //   }
+    // }
 
     const res = await this.db.saveData<ImageFile>(
       'appEyFL0S9APmWraC',
