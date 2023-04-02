@@ -16,7 +16,6 @@ import '@tsed/swagger';
   mount: {
     '/': [ApiController],
   },
-  httpPort: '127.0.0.1:8080',
   multer: {
     storage: multer.memoryStorage(),
   },
