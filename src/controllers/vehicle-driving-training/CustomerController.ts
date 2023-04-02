@@ -1,13 +1,12 @@
 import { BodyParams } from '@tsed/common';
 import { Controller } from '@tsed/di';
 import { Get, Post } from '@tsed/schema';
-import { Customer, Trainer } from '../../models/vehicle-driving-training';
+import { Customer } from '../../models/vehicle-driving-training';
 import { CustomerService } from '../../services/vehicle-driving-training/CustomService';
-import { TrainerService } from '../../services/vehicle-driving-training/TrainerService';
 
-@Controller('/customers')
+@Controller('/customer')
 export class PersonnelController {
-  constructor(private customerService: CustomerService, private trainerService: TrainerService) {}
+  constructor(private customerService: CustomerService) {}
   @Get()
   getCustomers(): Promise<Customer[]> {
     return this.customerService.getCustomers();
@@ -21,14 +20,5 @@ export class PersonnelController {
   @Post('/update')
   updateCustomer(@BodyParams() customer: Customer) {
     return this.customerService.updateCustomer(customer);
-  }
-
-  @Get('/trainers')
-  getTrainers(): Promise<Trainer[]> {
-    return this.trainerService.getTrainers();
-  }
-
-  insertTrainer(@BodyParams() trainer: Trainer) {
-    return this.trainerService.saveTrainer(trainer);
   }
 }
