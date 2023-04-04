@@ -2,6 +2,7 @@ import { Service, Value } from '@tsed/di';
 import axios from 'axios';
 import { NasaPictureOfDay } from '../../models/nasa/NasaPictureOfDay';
 import { NasaImage, NasaImageItem } from '../../models/nasa/NasaImage';
+import { NasaAsset } from '../../models/nasa/NasaAsset';
 
 @Service()
 export class NasaService {
@@ -28,6 +29,12 @@ export class NasaService {
     );
 
     return images;
+  }
+
+  async getAsset(nasaId: string): Promise<NasaAsset> {
+    const url = `https://images-api.nasa.gov/asset/${nasaId}`;
+    const res = await axios.get<NasaAsset>(url);
+    return res.data;
   }
 
   private getPricture(url: string): Promise<NasaImage> {

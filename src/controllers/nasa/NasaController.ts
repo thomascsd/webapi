@@ -1,4 +1,4 @@
-import { Controller, Get } from '@tsed/common';
+import { Controller, Get, PathParams } from '@tsed/common';
 import { NasaService } from '../../services/nasa/NasaService';
 
 @Controller('/nasa')
@@ -13,5 +13,10 @@ export class NasaController {
   @Get('/spacePictures')
   getSpacePictures() {
     return this.nasaService.getSpacePictures();
+  }
+
+  @Get('/asset/:nasaId')
+  getAsset(@PathParams('nasaId') nasaId: string) {
+    return this.nasaService.getAsset(nasaId);
   }
 }

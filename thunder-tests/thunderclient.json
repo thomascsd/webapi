@@ -40,5 +40,19 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "b4429bdc-eaea-49bc-b138-ca9fd0e8985c",
+    "colId": "a5dccb9f-d813-449e-86e8-d7f92ea8c558",
+    "containerId": "",
+    "name": "Asset",
+    "url": "{{apiUrl}}/api/nasa/asset/PIA22350",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-04-04T13:28:33.404Z",
+    "modified": "2023-04-04T13:30:08.571Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
