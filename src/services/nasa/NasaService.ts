@@ -18,7 +18,7 @@ export class NasaService {
 
   async getSpacePictures(): Promise<NasaImageItem[]> {
     const root = 'https://images-api.nasa.gov/search';
-    let url = `${root}?year_start=2010&year_end=${new Date().getFullYear()}&q=`;
+    let url = `${root}?year_start=2010&year_end=${new Date().getFullYear()}&page=1&q=`;
     let images: NasaImageItem[] = [];
 
     await Promise.all([this.getPricture(url + 'galexy'), this.getPricture(url + 'supernova')]).then(

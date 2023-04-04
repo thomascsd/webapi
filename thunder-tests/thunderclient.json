@@ -12,5 +12,33 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "42427df3-0635-4f2b-9294-d5b65be24386",
+    "colId": "a5dccb9f-d813-449e-86e8-d7f92ea8c558",
+    "containerId": "",
+    "name": "PictureOfDay",
+    "url": "{{apiUrl}}/api/nasa/pictureOfDay",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-04-04T05:53:15.762Z",
+    "modified": "2023-04-04T05:54:07.920Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "2eb96bf9-b1a8-400b-b15e-2322cf28c044",
+    "colId": "a5dccb9f-d813-449e-86e8-d7f92ea8c558",
+    "containerId": "",
+    "name": "SpacePictures",
+    "url": "{{apiUrl}}/api/nasa/spacePictures",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-04-04T05:55:34.547Z",
+    "modified": "2023-04-04T05:56:12.110Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
