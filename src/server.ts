@@ -1,9 +1,6 @@
 import { Configuration, Inject } from '@tsed/di';
 import { PlatformApplication } from '@tsed/common';
 import * as multer from 'multer';
-import helmet from 'helmet';
-import cors from 'cors';
-import bodyParser from 'body-parser';
 import { ApiController } from './controllers/ApiController';
 import { ClassTransformerPipe } from './pipes/ClassTransformerPipe';
 import { ClassValidationPipe } from './pipes/ClassValidationPipe';
@@ -16,6 +13,7 @@ import '@tsed/swagger';
   mount: {
     '/': [ApiController],
   },
+  middlewares: ['cors', 'helmet', 'compression', 'method-override', 'json-parser'],
   multer: {
     storage: multer.memoryStorage(),
   },
@@ -30,10 +28,4 @@ import '@tsed/swagger';
 export default class Server {
   @Inject()
   app!: PlatformApplication;
-
-  public $beforeRoutesInit(): void | Promise<any> {
-    this.app.use(helmet());
-    this.app.use(cors());
-    this.app.use(bodyParser.json());
-  }
 }

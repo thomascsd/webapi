@@ -2,7 +2,7 @@
   {
     "_id": "a5e460a3-752e-4094-8c36-3f42338d6783",
     "name": "dev",
-    "default": false,
+    "default": true,
     "sortNum": 10000,
     "created": "2023-04-04T04:52:38.800Z",
     "modified": "2023-04-04T04:52:38.800Z",
@@ -16,7 +16,7 @@
   {
     "_id": "33b508bb-df41-43af-9b50-da0ec2be6c68",
     "name": "prod",
-    "default": true,
+    "default": false,
     "sortNum": 20000,
     "created": "2023-04-04T04:52:47.188Z",
     "modified": "2023-04-04T04:52:47.188Z",
