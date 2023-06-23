@@ -8,8 +8,6 @@ export class DataService {
   @Value('AIRTABLE_API')
   apiKey!: string;
 
-  constructor() {}
-
   /**
    * Get Datas from AirTable
    *

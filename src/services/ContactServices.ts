@@ -1,5 +1,5 @@
-import { DataService } from './DataService';
 import { Service } from '@tsed/di';
+import { DataService } from './DataService';
 import { Contact } from '../models/Contact';
 
 const BASE_ID = 'appLdD9UKehdDawCn';
@@ -12,13 +12,13 @@ export class ContactService {
     return await this.db.getDatas<Contact>(BASE_ID, 'contact');
   }
 
-  async saveContact(contact: Contact) {
+  async saveContact(contact: Contact): Promise<string> {
     await this.db.saveData<Contact>(BASE_ID, 'contact', contact);
-    return 'ok';
+    return 'Contact saved successfully';
   }
 
-  async updateContact(contact: Contact) {
+  async updateContact(contact: Contact): Promise<string> {
     await this.db.updateData<Contact>(BASE_ID, 'contact', contact);
-    return 'ok';
+    return 'Contact updated successfully';
   }
 }
