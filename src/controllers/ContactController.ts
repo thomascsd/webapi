@@ -1,6 +1,6 @@
 import { Controller } from '@tsed/di';
 import { Get, Post } from '@tsed/schema';
-import { ContactService } from '../services/ContactServices';
+import { ContactService } from '../services/contact/ContactServices';
 import { Contact } from '../models/Contact';
 import { BodyParams } from '@tsed/common';
 

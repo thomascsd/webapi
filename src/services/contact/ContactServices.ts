@@ -1,6 +1,6 @@
-import { DataService } from './DataService';
+import { DataService } from '../DataService';
 import { Service } from '@tsed/di';
-import { Contact } from '../models/Contact';
+import { Contact } from '../../models/Contact';
 
 const BASE_ID = 'appLdD9UKehdDawCn';
 
