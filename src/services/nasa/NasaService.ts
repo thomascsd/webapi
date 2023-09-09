@@ -10,19 +10,23 @@ export class NasaService {
   apiKey!: string;
 
   async getPictureOfDay() {
-    const root = 'https://api.nasa.gov/planetary/apod';
-    const url = `${root}?count=10&api_key=${this.apiKey}`;
-    const res = await axios.get<NasaPictureOfDay[]>(url);
-
-    return res.data;
+    const APOD_ROOT = 'https://api.nasa.gov/planetary/apod';
+    const url = `${APOD_ROOT}?count=10&api_key=${this.apiKey}`;
+    try {
+      const res = await axios.get<NasaPictureOfDay[]>(url);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      throw new Error('Failed to get picture of day');
+    }
   }
 
   async getSpacePictures(): Promise<NasaImageItem[]> {
     const root = 'https://images-api.nasa.gov/search';
-    let url = `${root}?year_start=2010&year_end=${new Date().getFullYear()}&page=1&media_type=image&q=`;
+    const url = `${root}?year_start=2010&year_end=${new Date().getFullYear()}&page=1&media_type=image&q=`;
     let images: NasaImageItem[] = [];
 
-    await Promise.all([this.getPricture(url + 'galexy'), this.getPricture(url + 'supernova')]).then(
+    await Promise.all([this.getPicture(url + 'galexy'), this.getPicture(url + 'supernova')]).then(
       ([galaxy, supernova]) => {
         images = [...galaxy.collection.items, ...supernova.collection.items];
       }
@@ -37,7 +41,7 @@ export class NasaService {
     return res.data;
   }
 
-  private getPricture(url: string): Promise<NasaImage> {
+  private getPicture(url: string): Promise<NasaImage> {
     return axios.get<NasaImage>(url).then((res) => res.data);
   }
 }
