@@ -1,21 +1,21 @@
-import { $log } from '@tsed/common';
-import { PlatformExpress } from '@tsed/platform-express';
-import Server from './server';
-import dotenv from 'dotenv';
-import 'reflect-metadata';
+import { $log } from "@tsed/common";
+import { PlatformExpress } from "@tsed/platform-express";
+import dotenv from "dotenv";
+import "reflect-metadata";
+import Server from "./server";
 
 const config = dotenv.config({
-  path: '.env',
+  path: ".env",
 });
 
 async function bootstrap() {
   let httpPort: string | number = 8080;
 
   try {
-    $log.debug('Start server...');
+    $log.debug("Start server...");
 
-    if (process.env.MODE === 'dev') {
-      httpPort = '127.0.0.1:8080';
+    if (process.env.MODE === "dev") {
+      httpPort = "127.0.0.1:8080";
     }
 
     $log.debug(`MODE:${process.env.MODE}`);
@@ -29,7 +29,7 @@ async function bootstrap() {
     const platform = await PlatformExpress.bootstrap(Server, configObj);
 
     await platform.listen();
-    $log.debug('Server initialized');
+    $log.debug("Server initialized");
   } catch (er) {
     $log.error(er);
   }
