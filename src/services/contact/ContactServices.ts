@@ -9,7 +9,7 @@ export class ContactService {
   constructor(private db: DataService) {}
 
   async getContacts(): Promise<Contact[]> {
-    return await this.db.getDatas<Contact>(BASE_ID, 'contact');
+    return await this.db.getData<Contact>(BASE_ID, 'contact');
   }
 
   async saveContact(contact: Contact) {

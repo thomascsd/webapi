@@ -8,8 +8,8 @@ const BASE_ID = 'appGxC02yunTmPXRh';
 export class CustomerService {
   constructor(private db: DataService) {}
   async getCustomers(): Promise<Customer[]> {
-    const customers = await this.db.getDatas<Customer>(BASE_ID, 'customer');
-    const trainers = await this.db.getDatas<Trainer>(BASE_ID, 'trainer');
+    const customers = await this.db.getData<Customer>(BASE_ID, 'customer');
+    const trainers = await this.db.getData<Trainer>(BASE_ID, 'trainer');
 
     for (const customer of customers) {
       const trainer = trainers.find((m) => m.id == customer.trainerId);

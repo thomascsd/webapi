@@ -8,7 +8,7 @@ export class ImageFileService {
   constructor(private db: DataService) {}
 
   getFiles(): Promise<ImageFile[]> {
-    return this.db.getDatas<ImageFile>('appEyFL0S9APmWraC', 'imageFile');
+    return this.db.getData<ImageFile>('appEyFL0S9APmWraC', 'imageFile');
   }
 
   async upload(fileDatas: PlatformMulterFile[]) {

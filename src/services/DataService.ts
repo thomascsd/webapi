@@ -18,7 +18,7 @@ export class DataService {
    * @return {*}  {Promise<T[]>}
    * @memberof DataService
    */
-  async getDatas<T extends BaseModel>(
+  async getData<T extends BaseModel>(
     baseId: string,
     tableName: string,
     options?: SelectOptions
