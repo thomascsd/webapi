@@ -2,7 +2,7 @@ import { Service } from '@tsed/di';
 import bcrypt from 'bcrypt';
 import { DataService } from '../DataService';
 import { User, Role } from '../../models/vehicle-driving-training';
-import { AddUserDto, SignInDto, BaseObj } from '../../dtos';
+import { UserDto, SignInDto, BaseObj } from '../../dtos';
 
 const BASE_Id = 'appGxC02yunTmPXRh';
 
@@ -32,7 +32,7 @@ export class AdminService {
     return await this.db.getData<User>(BASE_Id, 'user');
   }
 
-  async addUser(dto: AddUserDto) {
+  async addUser(dto: UserDto) {
     const saltRounds = 10;
     const user: User = {
       account: dto.account,

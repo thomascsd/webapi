@@ -4,6 +4,7 @@ import * as multer from 'multer';
 import { ApiController } from './controllers/ApiController';
 import { ClassTransformerPipe } from './pipes/ClassTransformerPipe';
 import { ClassValidationPipe } from './pipes/ClassValidationPipe';
+import { UserDto } from './dtos';
 import '@tsed/swagger';
 
 // const __filename = fileURLToPath(import.meta.url);
@@ -23,6 +24,10 @@ import '@tsed/swagger';
       specVersion: '3.0.1',
     },
   ],
+  passport: {
+    disableSession: true,
+    userInfoModel: UserDto,
+  },
   imports: [ClassValidationPipe, ClassTransformerPipe],
 })
 export default class Server {

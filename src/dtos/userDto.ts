@@ -1,4 +1,4 @@
-export class AddUserDto {
+export class UserDto {
   account: string = '';
   password: string = '';
   roleId: string = '';

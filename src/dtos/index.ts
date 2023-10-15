@@ -1,3 +1,3 @@
 export * from './signInDto';
-export * from './addUserDto';
+export * from './userDto';
 export * from './baseRes';
