@@ -6,7 +6,6 @@ import * as jwt from 'jsonwebtoken';
 import { IStrategyOptions, Strategy } from 'passport-local';
 import { AdminService } from '../services/vehicle-driving-training/AdminService';
 import { UserDto } from '../dtos';
-import { Role } from '../models/vehicle-driving-training/role';
 
 @Protocol<IStrategyOptions>({
   name: 'local',
@@ -32,10 +31,7 @@ export class LocalProtocol implements OnVerify {
     const userDto = res.content;
     const token = this.createJwt(userDto);
 
-    const user = {
-      ...userDto,
-    };
-    await this.adminService.attachToken(user, token);
+    await this.adminService.attachToken(userDto.id || '', token);
 
     return userDto;
   }

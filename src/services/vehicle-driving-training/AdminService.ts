@@ -2,7 +2,7 @@ import { Service } from '@tsed/di';
 import bcrypt from 'bcrypt';
 import { DataService } from '../DataService';
 import { User, Role } from '../../models/vehicle-driving-training';
-import { UserDto, BaseRes } from '../../dtos';
+import { UserDto, BaseRes, addUserDto } from '../../dtos';
 
 const BASE_Id = 'appGxC02yunTmPXRh';
 
@@ -32,7 +32,8 @@ export class AdminService {
     return res;
   }
 
-  async attachToken(user: User, token: string) {
+  async attachToken(id: string, token: string) {
+    const user = await this.findUser(id);
     user.token = token;
     await this.updateUser(user);
   }
@@ -40,7 +41,7 @@ export class AdminService {
   async findUser(id: string): Promise<User> {
     const users = await this.db.getData<User>(BASE_Id, 'user', {
       where: {
-        id: id,
+        id,
       },
     });
 
@@ -55,7 +56,7 @@ export class AdminService {
     return await this.db.getData<User>(BASE_Id, 'user');
   }
 
-  async addUser(dto: UserDto) {
+  async addUser(dto: addUserDto) {
     const saltRounds = 10;
     const user: User = {
       account: dto.account,
