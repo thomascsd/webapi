@@ -18,11 +18,9 @@ export class JwtProtocol implements OnVerify {
   constructor(private adminService: AdminService) {}
 
   async $onVerify(@Req() req: Req, @Arg(0) jwtPayload: any) {
-    const user = this.adminService.findOne({
-      id: jwtPayload.sub,
-    });
+    const user = await this.adminService.findUser(jwtPayload.sub);
 
-    if (!user) {
+    if (!user.id) {
       throw new Unauthorized('Wrong token');
     }
 

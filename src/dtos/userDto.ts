@@ -1,5 +1,6 @@
 export class UserDto {
-  account: string = '';
-  password: string = '';
-  roleId: string = '';
+  id?: string = '';
+  account?: string = '';
+  password?: string = '';
+  roleName?: string = '';
 }

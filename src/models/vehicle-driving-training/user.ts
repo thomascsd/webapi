@@ -5,5 +5,6 @@ export class User extends BaseModel {
   account: string = '';
   password: string = '';
   role: string[] = [];
+  token: string = '';
   createTime!: Date;
 }

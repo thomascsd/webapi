@@ -2,7 +2,7 @@ import { Service } from '@tsed/di';
 import bcrypt from 'bcrypt';
 import { DataService } from '../DataService';
 import { User, Role } from '../../models/vehicle-driving-training';
-import { UserDto, SignInDto, BaseObj } from '../../dtos';
+import { UserDto, BaseRes } from '../../dtos';
 
 const BASE_Id = 'appGxC02yunTmPXRh';
 
@@ -10,22 +10,45 @@ const BASE_Id = 'appGxC02yunTmPXRh';
 export class AdminService {
   constructor(private db: DataService) {}
 
-  async SignIn(signInDto: SignInDto): Promise<BaseObj> {
-    const res: BaseObj = { success: true };
+  async SignIn(dto: UserDto): Promise<BaseRes<UserDto>> {
+    const res: BaseRes<UserDto> = { success: true, content: new UserDto() };
     const users = await this.getUsers();
-    const selectedUsers = users.filter((u) => u.account === signInDto.account);
+    const selectedUsers = users.filter((u) => u.account === dto.account);
 
     if (selectedUsers.length === 0) {
-      return { success: false, errorMessage: '' };
+      return { success: false, errorMessage: '', content: new UserDto() };
     }
 
     const user = selectedUsers[0];
     const hash = user.password;
-    const valid = await bcrypt.compare(signInDto.password, hash);
+    const valid = await bcrypt.compare(dto.password || '', hash);
 
     res.success = valid;
+    res.content = {
+      id: user.id,
+      roleName: user.role[0],
+    };
 
     return res;
+  }
+
+  async attachToken(user: User, token: string) {
+    user.token = token;
+    await this.updateUser(user);
+  }
+
+  async findUser(id: string): Promise<User> {
+    const users = await this.db.getData<User>(BASE_Id, 'user', {
+      where: {
+        id: id,
+      },
+    });
+
+    if (users.length) {
+      return users[0];
+    }
+
+    return new User();
   }
 
   async getUsers(): Promise<User[]> {
@@ -39,6 +62,7 @@ export class AdminService {
       password: await bcrypt.hash(dto.password, saltRounds),
       role: [dto.roleId],
       createTime: new Date(),
+      token: '',
     };
 
     return await this.db.saveData<User>(BASE_Id, 'user', user);

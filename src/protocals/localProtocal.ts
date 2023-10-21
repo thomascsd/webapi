@@ -5,13 +5,14 @@ import { Groups } from '@tsed/schema';
 import * as jwt from 'jsonwebtoken';
 import { IStrategyOptions, Strategy } from 'passport-local';
 import { AdminService } from '../services/vehicle-driving-training/AdminService';
-import { SignInDto } from '../dtos';
+import { UserDto } from '../dtos';
+import { Role } from '../models/vehicle-driving-training/role';
 
 @Protocol<IStrategyOptions>({
   name: 'local',
   useStrategy: Strategy,
   settings: {
-    usernameField: 'email',
+    usernameField: 'account',
     passwordField: 'password',
   },
 })
@@ -21,24 +22,25 @@ export class LocalProtocol implements OnVerify {
   @Constant('passport.protocols.jwt.settings')
   jwtSettings: any;
 
-  async $onVerify(
-    @Req() request: Req,
-    @BodyParams() @Groups('credentials') credentials: SignInDto
-  ) {
-    const user = await this.adminService.SignIn(credentials);
+  async $onVerify(@Req() request: Req, @BodyParams() @Groups('credentials') credentials: UserDto) {
+    const res = await this.adminService.SignIn(credentials);
 
-    if (!user) {
+    if (!res.success) {
       throw new Unauthorized('Wrong credentials');
     }
 
-    const token = this.createJwt(user);
+    const userDto = res.content;
+    const token = this.createJwt(userDto);
 
-    this.adminService.attachToken(user, token);
+    const user = {
+      ...userDto,
+    };
+    await this.adminService.attachToken(user, token);
 
-    return user;
+    return userDto;
   }
 
-  createJwt(user: User) {
+  createJwt(user: UserDto) {
     const { issuer, audience, secretOrKey, maxAge = 3600 } = this.jwtSettings;
     const now = Date.now();
 
