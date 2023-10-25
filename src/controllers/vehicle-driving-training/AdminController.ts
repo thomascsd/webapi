@@ -1,19 +1,35 @@
 import { Controller } from '@tsed/di';
 import { Get, Post } from '@tsed/schema';
+import { AdminService } from '../../services/vehicle-driving-training/AdminService';
+import { UserDto, AddUserDto } from '../../dtos';
+import { Role, User } from '../../models/vehicle-driving-training';
 
-@Controller('/user')
+@Controller('/admin')
 export class AdminController {
-  constructor() {}
+  constructor(private adminService: AdminService) {}
 
-  @Post('/login')
-  login() {}
+  @Post('/signIn')
+  async signIn(dto: UserDto) {
+    return await this.adminService.SignIn(dto);
+  }
 
   @Get('/users')
-  getUsers() {}
+  async getUsers(): Promise<User[]> {
+    return await this.adminService.getUsers();
+  }
 
-  @Post('/add')
-  addUser() {}
+  @Post('/user/add')
+  async addUser(dto: AddUserDto) {
+    return await this.adminService.addUser(dto);
+  }
 
-  @Post('/update')
-  updateUser() {}
+  @Post('user/update')
+  async updateUser(user: User) {
+    return await this.adminService.updateUser(user);
+  }
+
+  @Get('/roles')
+  async getRoles(): Promise<Role[]> {
+    return await this.adminService.getRoles();
+  }
 }
