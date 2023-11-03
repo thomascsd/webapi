@@ -1,16 +1,26 @@
 import { Controller } from '@tsed/di';
-import { Get, Post } from '@tsed/schema';
+import { Get, Post, Security } from '@tsed/schema';
+import { Authenticate } from '@tsed/passport';
 import { AdminService } from '../../services/vehicle-driving-training/AdminService';
 import { UserDto, AddUserDto } from '../../dtos';
 import { Role, User } from '../../models/vehicle-driving-training';
+import { Req } from '@tsed/common';
 
 @Controller('/admin')
 export class AdminController {
   constructor(private adminService: AdminService) {}
 
-  @Post('/signIn')
-  async signIn(dto: UserDto) {
-    return await this.adminService.SignIn(dto);
+  @Post('/login')
+  @Authenticate('local')
+  async login(@Req('user') user: UserDto) {
+    return user;
+  }
+
+  @Get('/userinfo')
+  @Authenticate('jwt')
+  @Security('jwt')
+  getUserInfo(@Req('user') user: UserDto) {
+    return user;
   }
 
   @Get('/users')

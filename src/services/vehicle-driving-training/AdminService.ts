@@ -10,7 +10,7 @@ const BASE_Id = 'appGxC02yunTmPXRh';
 export class AdminService {
   constructor(private db: DataService) {}
 
-  async SignIn(dto: UserDto): Promise<BaseRes<UserDto>> {
+  async login(dto: UserDto): Promise<BaseRes<UserDto>> {
     const res: BaseRes<UserDto> = { success: true, content: new UserDto() };
     const users = await this.getUsers();
     const selectedUsers = users.filter((u) => u.account === dto.account);

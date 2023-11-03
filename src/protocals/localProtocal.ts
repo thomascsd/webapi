@@ -22,7 +22,7 @@ export class LocalProtocol implements OnVerify {
   jwtSettings: any;
 
   async $onVerify(@Req() request: Req, @BodyParams() @Groups('credentials') credentials: UserDto) {
-    const res = await this.adminService.SignIn(credentials);
+    const res = await this.adminService.login(credentials);
 
     if (!res.success) {
       throw new Unauthorized('Wrong credentials');
