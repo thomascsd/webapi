@@ -14,7 +14,7 @@ import '@tsed/swagger';
   mount: {
     '/': [ApiController],
   },
-  middlewares: ['cors', 'helmet', 'compression', 'method-override', 'json-parser'],
+  middlewares: ['cors', 'helmet', 'method-override', 'json-parser'],
   multer: {
     storage: multer.memoryStorage(),
   },

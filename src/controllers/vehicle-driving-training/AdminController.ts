@@ -1,10 +1,10 @@
 import { Controller } from '@tsed/di';
 import { Get, Post, Security } from '@tsed/schema';
-import { Authenticate } from '@tsed/passport';
+import { Authenticate, Authorize } from '@tsed/passport';
+import { BodyParams, Req } from '@tsed/common';
 import { AdminService } from '../../services/vehicle-driving-training/AdminService';
 import { UserDto, AddUserDto } from '../../dtos';
 import { Role, User } from '../../models/vehicle-driving-training';
-import { Req } from '@tsed/common';
 
 @Controller('/admin')
 export class AdminController {
@@ -24,12 +24,13 @@ export class AdminController {
   }
 
   @Get('/users')
+  @Authorize('jwt')
   async getUsers(): Promise<User[]> {
     return await this.adminService.getUsers();
   }
 
   @Post('/user/add')
-  async addUser(dto: AddUserDto) {
+  async addUser(@BodyParams() dto: AddUserDto) {
     return await this.adminService.addUser(dto);
   }
 
