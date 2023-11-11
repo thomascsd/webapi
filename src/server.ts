@@ -6,6 +6,7 @@ import { ClassTransformerPipe } from './pipes/ClassTransformerPipe';
 import { ClassValidationPipe } from './pipes/ClassValidationPipe';
 import { UserDto } from './dtos';
 import '@tsed/swagger';
+import './protocals';
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);

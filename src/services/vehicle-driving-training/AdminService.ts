@@ -26,22 +26,23 @@ export class AdminService {
     res.success = valid;
     res.content = {
       id: user.id,
-      roleName: user.role[0],
+      account: user.account,
+      roleName: !!user.roleName ? user.roleName[0] : '',
     };
 
     return res;
   }
 
-  async attachToken(id: string, token: string) {
-    const user = await this.findUser(id);
+  async attachToken(account: string, token: string) {
+    const user = await this.findUser(account);
     user.token = token;
     await this.updateUser(user);
   }
 
-  async findUser(id: string): Promise<User> {
+  async findUser(account: string): Promise<User> {
     const users = await this.db.getData<User>(BASE_Id, 'user', {
       where: {
-        id,
+        account,
       },
     });
 
@@ -70,6 +71,8 @@ export class AdminService {
   }
 
   async updateUser(user: User) {
+    delete user.userId;
+    delete user.roleName;
     return await this.db.updateData<User>(BASE_Id, 'user', user);
   }
 
