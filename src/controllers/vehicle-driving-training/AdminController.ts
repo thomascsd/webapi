@@ -37,6 +37,7 @@ export class AdminController {
   }
 
   @Post('user/update')
+  @Authorize('jwt')
   async updateUser(user: User) {
     return await this.adminService.updateUser(user);
   }

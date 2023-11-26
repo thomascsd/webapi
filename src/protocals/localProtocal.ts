@@ -32,8 +32,9 @@ export class LocalProtocol implements OnVerify {
     const token = this.createJwt(userDto);
 
     await this.adminService.attachToken(userDto.account || '', token);
+    userDto.token = token;
 
-    return [userDto, { session: false }];
+    return userDto;
   }
 
   createJwt(user: UserDto) {
@@ -44,7 +45,7 @@ export class LocalProtocol implements OnVerify {
       {
         iss: issuer,
         aud: audience,
-        sub: user.id,
+        sub: user.account,
         exp: now + maxAge * 1000,
         iat: now,
       },

@@ -28,6 +28,7 @@ export class AdminService {
       id: user.id,
       account: user.account,
       roleName: !!user.roleName ? user.roleName[0] : '',
+      token: user.token,
     };
 
     return res;
