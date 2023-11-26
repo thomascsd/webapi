@@ -11,7 +11,9 @@ export class AdminController {
   constructor(private adminService: AdminService) {}
 
   @Post('/login')
-  @Authenticate('local')
+  @Authenticate('local', {
+    session: false,
+  })
   async login(@Req('user') user: UserDto) {
     return user;
   }

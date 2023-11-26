@@ -13,7 +13,6 @@ import { UserDto } from '../dtos';
   settings: {
     usernameField: 'account',
     passwordField: 'password',
-    session: false,
   },
 })
 export class LocalProtocol implements OnVerify {
@@ -34,7 +33,7 @@ export class LocalProtocol implements OnVerify {
 
     await this.adminService.attachToken(userDto.account || '', token);
 
-    return userDto;
+    return [userDto, { session: false }];
   }
 
   createJwt(user: UserDto) {
