@@ -5,9 +5,10 @@ export class Customer extends BaseModel {
   name: string = '';
   mobile: string = '';
   birthday: Date = new Date();
-  meno: string = '';
+  memo: string = '';
   trainerId: string = '';
   createUser: string = '';
   createTime: Date = new Date();
+  schedule = '';
   trainer: Trainer = new Trainer();
 }
