@@ -1,7 +1,7 @@
 import { DataService } from '../DataService';
 import { Service } from 'typedi';
 import { Customer, Schedule, Trainer } from '../../models/vehicle-driving-training';
-import { CustomerDto } from '../../dtos';
+import { CustomerDto as CustomerDto, UpdateCustomerDto } from '../../dtos';
 
 const BASE_ID = 'appGxC02yunTmPXRh';
 
@@ -23,23 +23,48 @@ export class CustomerService {
     return customers;
   }
   async saveCustomer(customerDto: CustomerDto) {
-    const schedule: Schedule = new Schedule();
-    const customer = new Customer();
     const now = new Date();
 
-    schedule.morning = customerDto.moning;
-    schedule.afternoon = customerDto.afternoon;
-    schedule.evening = customerDto.evening;
-    schedule.createTime = now;
+    const schedule: Schedule = {
+      morning: customerDto.moning,
+      afternoon: customerDto.afternoon,
+      evening: customerDto.evening,
+      createUser: customerDto.createUser,
+      createTime: now,
+    };
 
-    await this.db.saveData(BASE_ID, 'schedule', schedule);
+    const insertedSchedule = await this.db.saveData(BASE_ID, 'schedule', schedule);
 
-    customer.custId = customerDto.custId;
+    const customer: Customer = {
+      custId: customerDto.custId,
+      name: customerDto.name,
+      mobile: customerDto.mobile,
+      memo: customerDto.memo,
+      createUser: customerDto.createUser,
+      createTime: now,
+      schedule: [insertedSchedule.id],
+      trainerId: [customerDto.trainerId],
+    };
 
-    await this.db.saveData(BASE_ID, 'customer', customer);
+    const insertedCustomer = await this.db.saveData(BASE_ID, 'customer', customer);
+
+    schedule.id = insertedSchedule.id;
+    schedule.customerId = insertedCustomer.id;
   }
 
-  async updateCustomer(customer: Customer) {
+  async updateCustomer(customerDto: UpdateCustomerDto) {
+    const now = new Date();
+    const customer: Customer = {
+      custId: customerDto.custId,
+      name: customerDto.name,
+      mobile: customerDto.mobile,
+      memo: customerDto.memo,
+      createUser: customerDto.createUser,
+      createTime: now,
+      schedule: [customerDto.id],
+      trainerId: [customerDto.trainerId],
+    };
+
     await this.db.updateData(BASE_ID, 'customer', customer);
   }
 }

@@ -5,7 +5,7 @@ export class User extends BaseModel {
   account: string = '';
   password: string = '';
   role: string[] = [];
-  roleName?: string[] = [];
   token: string = '';
   createTime!: Date;
+  roleName?: string[] = [];
 }

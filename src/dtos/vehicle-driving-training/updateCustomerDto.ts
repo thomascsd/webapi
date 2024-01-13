@@ -1,4 +1,5 @@
-export class CustomerDto {
+export class UpdateCustomerDto {
+  id: string = '';
   custId: string = '';
   name: string = '';
   mobile: string = '';
@@ -6,6 +7,7 @@ export class CustomerDto {
   moning = false;
   afternoon = false;
   evening = false;
+  scheduleId: string = '';
   trainerId: string = '';
   createUser: string = '';
 }
