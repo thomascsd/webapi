@@ -1,26 +1,38 @@
 import { DataService } from '../DataService';
 import { Service } from 'typedi';
 import { Customer, Schedule, Trainer } from '../../models/vehicle-driving-training';
-import { CustomerDto as CustomerDto, UpdateCustomerDto } from '../../dtos';
+import { CustomerDto, CustomerRes, UpdateCustomerDto } from '../../dtos';
 
 const BASE_ID = 'appGxC02yunTmPXRh';
 
 @Service()
 export class CustomerService {
   constructor(private db: DataService) {}
-  async getCustomers(): Promise<Customer[]> {
+  async getCustomers(): Promise<CustomerRes[]> {
     const customers = await this.db.getData<Customer>(BASE_ID, 'customer');
     const trainers = await this.db.getData<Trainer>(BASE_ID, 'trainer');
+    const schedules = await this.db.getData<Schedule>(BASE_ID, 'schedule');
+    const customerRes: CustomerRes[] = [];
 
     for (const customer of customers) {
-      const trainer = trainers.find((m) => m.id == customer.trainerId);
+      const trainer = trainers.find((m) => m.id === customer.trainerId[0]);
+      const schedule = schedules.find((m) => m.customerId === customer.id);
 
       if (trainer) {
         customer.trainer = trainer;
       }
+
+      customerRes.push({
+        custId: customer.custId,
+        name: customer.name,
+        mobile: customer.mobile,
+        memo: customer.memo,
+        trainer,
+        schedule,
+      });
     }
 
-    return customers;
+    return customerRes;
   }
   async saveCustomer(customerDto: CustomerDto) {
     const now = new Date();
