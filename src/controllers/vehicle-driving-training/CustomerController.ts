@@ -2,16 +2,15 @@ import { BodyParams } from '@tsed/common';
 import { Controller } from '@tsed/di';
 import { Get, Post } from '@tsed/schema';
 import { Authorize } from '@tsed/passport';
-import { Customer } from '../../models/vehicle-driving-training';
 import { CustomerService } from '../../services/vehicle-driving-training/CustomService';
-import { CustomerDto } from '../../dtos';
+import { CustomerDto, CustomerRes, UpdateCustomerDto } from '../../dtos';
 
 @Controller('/customer')
 @Authorize('jwt')
 export class PersonnelController {
   constructor(private customerService: CustomerService) {}
   @Get()
-  getCustomers(): Promise<Customer[]> {
+  getCustomers(): Promise<CustomerRes[]> {
     return this.customerService.getCustomers();
   }
 
@@ -21,7 +20,7 @@ export class PersonnelController {
   }
 
   @Post('/update')
-  updateCustomer(@BodyParams() customer: Customer) {
-    return this.customerService.updateCustomer(customer);
+  updateCustomer(@BodyParams() customerDto: UpdateCustomerDto) {
+    return this.customerService.updateCustomer(customerDto);
   }
 }

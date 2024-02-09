@@ -18,18 +18,16 @@ export class CustomerService {
       const trainer = trainers.find((m) => m.id === customer.trainerId[0]);
       const schedule = schedules.find((m) => m.customerId === customer.id);
 
-      if (trainer) {
-        customer.trainer = trainer;
+      if (trainer && schedule) {
+        customerRes.push({
+          custId: customer.custId,
+          name: customer.name,
+          mobile: customer.mobile,
+          memo: customer.memo,
+          trainer,
+          schedule,
+        });
       }
-
-      customerRes.push({
-        custId: customer.custId,
-        name: customer.name,
-        mobile: customer.mobile,
-        memo: customer.memo,
-        trainer,
-        schedule,
-      });
     }
 
     return customerRes;

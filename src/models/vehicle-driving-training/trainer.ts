@@ -1,7 +1,7 @@
 import { BaseModel } from '@thomascsd/stools-models';
-import { Customer } from './customer';
+
 export class Trainer extends BaseModel {
-  ownerId: string = '';
+  custId: string = '';
   name: string = '';
   mobile: string = '';
   createUser: string = '';
