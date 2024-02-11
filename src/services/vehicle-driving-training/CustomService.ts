@@ -1,7 +1,7 @@
+import { Service } from '@tsed/di';
 import { DataService } from '../DataService';
-import { Service } from 'typedi';
 import { Customer, Schedule, Trainer } from '../../models/vehicle-driving-training';
-import { CustomerDto, CustomerRes, UpdateCustomerDto } from '../../dtos';
+import { BaseObj, CustomerDto, CustomerRes, UpdateCustomerDto } from '../../dtos';
 
 const BASE_ID = 'appGxC02yunTmPXRh';
 
@@ -32,7 +32,7 @@ export class CustomerService {
 
     return customerRes;
   }
-  async saveCustomer(customerDto: CustomerDto) {
+  async saveCustomer(customerDto: CustomerDto): Promise<BaseObj> {
     const now = new Date();
 
     const schedule: Schedule = {
@@ -56,13 +56,12 @@ export class CustomerService {
       trainerId: [customerDto.trainerId],
     };
 
-    const insertedCustomer = await this.db.saveData(BASE_ID, 'customer', customer);
+    await this.db.saveData(BASE_ID, 'customer', customer);
 
-    schedule.id = insertedSchedule.id;
-    schedule.customerId = insertedCustomer.id;
+    return { success: true };
   }
 
-  async updateCustomer(customerDto: UpdateCustomerDto) {
+  async updateCustomer(customerDto: UpdateCustomerDto): Promise<BaseObj> {
     const now = new Date();
     const customer: Customer = {
       custId: customerDto.custId,
@@ -76,5 +75,7 @@ export class CustomerService {
     };
 
     await this.db.updateData(BASE_ID, 'customer', customer);
+
+    return { success: true };
   }
 }

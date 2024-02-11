@@ -1,7 +1,8 @@
 import { DataService } from '@thomascsd/stools';
-import { Service } from 'typedi';
+import { Service } from '@tsed/di';
 import { Trainer } from '../../models/vehicle-driving-training';
 import { TrainerRes } from '../../dtos/vehicle-driving-training/trainerRes';
+import { BaseObj } from '../../dtos';
 
 const BASE_ID = 'appGxC02yunTmPXRh';
 
@@ -23,7 +24,9 @@ export class TrainerService {
 
     return trainerRes;
   }
-  async saveTrainer(trainer: Trainer) {
+  async saveTrainer(trainer: Trainer): Promise<BaseObj> {
     await this.db.saveData(BASE_ID, 'trainer', trainer);
+
+    return { success: true };
   }
 }
