@@ -1,6 +1,6 @@
 import { Service } from '@tsed/di';
-import bcrypt from 'bcrypt';
-import { DataService } from '../DataService';
+import { compare, hash } from 'bcrypt';
+import { BaseDataService } from '../DataService';
 import { User, Role } from '../../models/vehicle-driving-training';
 import { UserDto, BaseRes, AddUserDto } from '../../dtos';
 
@@ -8,7 +8,7 @@ const BASE_Id = 'appGxC02yunTmPXRh';
 
 @Service()
 export class AdminService {
-  constructor(private db: DataService) {}
+  constructor(private db: BaseDataService) {}
 
   async login(dto: UserDto): Promise<BaseRes<UserDto>> {
     const res: BaseRes<UserDto> = { success: true, content: new UserDto() };
@@ -21,7 +21,7 @@ export class AdminService {
 
     const user = selectedUsers[0];
     const hash = user.password;
-    const valid = await bcrypt.compare(dto.password || '', hash);
+    const valid = await compare(dto.password || '', hash);
 
     res.success = valid;
     res.content = {
@@ -41,10 +41,8 @@ export class AdminService {
   }
 
   async findUser(account: string): Promise<User> {
-    const users = await this.db.getData<User>(BASE_Id, 'user', {
-      where: {
-        account,
-      },
+    const users = await this.db.getData<User>(this.db.apiKey, BASE_Id, 'user', {
+      filterByFormula: `{account}='${account}'`,
     });
 
     if (users.length) {
@@ -55,29 +53,29 @@ export class AdminService {
   }
 
   async getUsers(): Promise<User[]> {
-    return await this.db.getData<User>(BASE_Id, 'user');
+    return await this.db.getData<User>(this.db.apiKey, BASE_Id, 'user');
   }
 
   async addUser(dto: AddUserDto) {
     const saltRounds = 10;
     const user: User = {
       account: dto.account,
-      password: await bcrypt.hash(dto.password, saltRounds),
+      password: await hash(dto.password, saltRounds),
       role: [dto.roleId],
       createTime: new Date(),
       token: '',
     };
 
-    return await this.db.saveData<User>(BASE_Id, 'user', user);
+    return await this.db.saveData<User>(this.db.apiKey, BASE_Id, 'user', user);
   }
 
   async updateUser(user: User) {
     delete user.userId;
     delete user.roleName;
-    return await this.db.updateData<User>(BASE_Id, 'user', user);
+    return await this.db.updateData<User>(this.db.apiKey, BASE_Id, 'user', user);
   }
 
   async getRoles(): Promise<Role[]> {
-    return await this.db.getData<Role>(BASE_Id, 'role');
+    return await this.db.getData<Role>(this.db.apiKey, BASE_Id, 'role');
   }
 }

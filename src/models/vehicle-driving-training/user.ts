@@ -1,4 +1,4 @@
-import { BaseModel } from '@thomascsd/stools-models';
+import { BaseModel } from '@thomascsd/stools';
 
 export class User extends BaseModel {
   userId?: number = 0;

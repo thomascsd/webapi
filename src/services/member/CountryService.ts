@@ -1,19 +1,19 @@
 import { County } from '../../models/members/County';
 import { Distinct } from '../../models/members/Distinct';
-import { DataService } from '@thomascsd/stools';
+import { BaseDataService } from '../DataService';
 
 const BASE_ID = 'appYytqUfVu81cjXn';
 
 export class CountyService {
-  constructor(private db: DataService) {}
+  constructor(private db: BaseDataService) {}
 
   async getCounties(): Promise<County[]> {
-    const counties = this.db.getDatas<County>(BASE_ID, 'county');
+    const counties = this.db.getData<County>(this.db.apiKey, BASE_ID, 'county');
     return counties;
   }
 
   async getDistincts(countyCode: string): Promise<Distinct[]> {
-    const distincts = await this.db.getDatas<Distinct>(BASE_ID, 'distinct', {
+    const distincts = await this.db.getData<Distinct>(this.db.apiKey, BASE_ID, 'distinct', {
       filterByFormula: `{countyCode}=${countyCode}`,
     });
     return distincts;

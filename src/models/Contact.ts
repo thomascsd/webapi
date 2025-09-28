@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsEmail, IsMobilePhone } from 'class-validator';
-import { BaseModel } from '@thomascsd/stools-models';
+import { BaseModel } from '@thomascsd/stools';
 
 export class Contact extends BaseModel {
   constructor() {

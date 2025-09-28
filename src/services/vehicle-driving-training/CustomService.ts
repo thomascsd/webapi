@@ -1,5 +1,5 @@
 import { Service } from '@tsed/di';
-import { DataService } from '../DataService';
+import { BaseDataService } from '../DataService';
 import { Customer, Schedule, Trainer } from '../../models/vehicle-driving-training';
 import { BaseObj, CustomerDto, CustomerRes, UpdateCustomerDto } from '../../dtos';
 
@@ -7,11 +7,11 @@ const BASE_ID = 'appGxC02yunTmPXRh';
 
 @Service()
 export class CustomerService {
-  constructor(private db: DataService) {}
+  constructor(private db: BaseDataService) {}
   async getCustomers(): Promise<CustomerRes[]> {
-    const customers = await this.db.getData<Customer>(BASE_ID, 'customer');
-    const trainers = await this.db.getData<Trainer>(BASE_ID, 'trainer');
-    const schedules = await this.db.getData<Schedule>(BASE_ID, 'schedule');
+    const customers = await this.db.getData<Customer>(this.db.apiKey, BASE_ID, 'customer');
+    const trainers = await this.db.getData<Trainer>(this.db.apiKey, BASE_ID, 'trainer');
+    const schedules = await this.db.getData<Schedule>(this.db.apiKey, BASE_ID, 'schedule');
     const customerRes: CustomerRes[] = [];
 
     for (const customer of customers) {
@@ -43,7 +43,7 @@ export class CustomerService {
       createTime: now,
     };
 
-    const insertedSchedule = await this.db.saveData(BASE_ID, 'schedule', schedule);
+    const insertedSchedule = await this.db.saveData(this.db.apiKey, BASE_ID, 'schedule', schedule);
 
     const customer: Customer = {
       custId: customerDto.custId,
@@ -53,11 +53,11 @@ export class CustomerService {
       memo: customerDto.memo,
       createUser: customerDto.createUser,
       createTime: now,
-      schedule: [insertedSchedule.id],
+      schedule: [insertedSchedule.records[0].id],
       trainerId: [customerDto.trainerId],
     };
 
-    await this.db.saveData(BASE_ID, 'customer', customer);
+    await this.db.saveData(this.db.apiKey, BASE_ID, 'customer', customer);
 
     return { success: true };
   }
@@ -76,7 +76,7 @@ export class CustomerService {
       trainerId: [customerDto.trainerId],
     };
 
-    await this.db.updateData(BASE_ID, 'customer', customer);
+    await this.db.updateData(this.db.apiKey, BASE_ID, 'customer', customer);
 
     return { success: true };
   }

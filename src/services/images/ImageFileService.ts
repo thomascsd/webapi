@@ -1,26 +1,26 @@
 import { Service } from 'typedi';
 import { PlatformMulterFile } from '@tsed/common';
-import { DataService } from '../DataService';
+import { BaseDataService } from '../DataService';
 import { ImageFile } from '../../models/images/ImageFile';
 
 @Service()
 export class ImageFileService {
-  constructor(private db: DataService) {}
+  constructor(private db: BaseDataService) {}
 
   getFiles(): Promise<ImageFile[]> {
-    return this.db.getData<ImageFile>('appEyFL0S9APmWraC', 'imageFile');
+    return this.db.getData<ImageFile>(this.db.apiKey, 'appEyFL0S9APmWraC', 'imageFile');
   }
 
   async upload(fileDatas: PlatformMulterFile[]) {
     const fileData = fileDatas[0];
     const imageFile = new ImageFile();
-    const buffer = fileData.buffer;
-    const image64 = buffer.toString('base64');
-    const length = 500;
-    let dataUrl = `data:${fileData.mimetype};base64,${image64}`;
-    let i = 0;
-    let columnIdex = 1;
-    let content = '';
+    // const buffer = fileData.buffer;
+    // const image64 = buffer.toString('base64');
+    // const length = 500;
+    // let dataUrl = `data:${fileData.mimetype};base64,${image64}`;
+    // let i = 0;
+    // let columnIdex = 1;
+    // let content = '';
 
     imageFile.filename = fileData.originalname;
     imageFile.mimetype = fileData.mimetype;
@@ -45,10 +45,10 @@ export class ImageFileService {
     // }
 
     const res = await this.db.saveData<ImageFile>(
+      this.db.apiKey,
       'appEyFL0S9APmWraC',
       'imageFile',
       imageFile,
-      true
     );
 
     return res;

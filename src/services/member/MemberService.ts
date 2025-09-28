@@ -1,14 +1,14 @@
 import { genSalt, hash } from 'bcrypt';
-import { DataService } from '@thomascsd/stools';
+import { BaseDataService } from '../DataService';
 import { Member } from '../../models/members/Member';
 
 const BASE_ID = 'appYytqUfVu81cjXn';
 
 export class MemberService {
-  constructor(private db: DataService) {}
+  constructor(private db: BaseDataService) {}
 
   async getMembers(): Promise<Member[]> {
-    return await this.db.getDatas<Member>(BASE_ID, 'member');
+    return await this.db.getData<Member>(this.db.apiKey, BASE_ID, 'member');
   }
 
   async saveMember(member: Member) {
@@ -17,6 +17,6 @@ export class MemberService {
 
     member.password = bPwd;
 
-    return this.db.saveData(BASE_ID, 'member', member);
+    return this.db.saveData(this.db.apiKey, BASE_ID, 'member', member);
   }
 }

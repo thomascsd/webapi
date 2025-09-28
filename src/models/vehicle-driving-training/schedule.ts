@@ -1,4 +1,4 @@
-import { BaseModel } from '@thomascsd/stools-models';
+import { BaseModel } from '@thomascsd/stools';
 
 export class Schedule extends BaseModel {
   customerId?: string = '';
