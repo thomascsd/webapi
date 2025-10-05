@@ -1,6 +1,6 @@
 import { genSalt, hash } from 'bcrypt';
-import { BaseDataService } from '../DataService';
-import { Member } from '../../models/members/Member';
+import { BaseDataService } from '../DataService.mjs';
+import { Member } from '../../models/members/Member.mjs';
 
 const BASE_ID = 'appYytqUfVu81cjXn';
 

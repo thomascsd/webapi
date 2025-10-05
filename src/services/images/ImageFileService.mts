@@ -1,7 +1,7 @@
 import { Service } from 'typedi';
-import { PlatformMulterFile } from '@tsed/common';
-import { BaseDataService } from '../DataService';
-import { ImageFile } from '../../models/images/ImageFile';
+import { PlatformMulterFile } from '@tsed/platform-multer';
+import { BaseDataService } from '../DataService.mjs';
+import { ImageFile } from '../../models/images/ImageFile.mjs';
 
 @Service()
 export class ImageFileService {

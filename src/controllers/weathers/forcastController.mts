@@ -1,7 +1,7 @@
 import { QueryParams } from '@tsed/common';
 import { Controller } from '@tsed/di';
 import { Get } from '@tsed/schema';
-import { ForecastService } from '../../services/weathers/forecastService';
+import { ForecastService } from '../../services/weathers/ForecastService.mjs';
 
 @Controller('/forecast')
 export class ForecastController {

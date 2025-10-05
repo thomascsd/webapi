@@ -1,5 +1,5 @@
 import { Controller, Get, PathParams } from '@tsed/common';
-import { NasaService } from '../../services/nasa/NasaService';
+import { NasaService } from '../../services/nasa/NasaService.mjs';
 
 @Controller('/nasa')
 export class NasaController {

@@ -1,8 +1,8 @@
 import { Service, Value } from '@tsed/di';
 import axios from 'axios';
-import { NasaPictureOfDay } from '../../models/nasa/NasaPictureOfDay';
-import { NasaImage, NasaImageItem } from '../../models/nasa/NasaImage';
-import { NasaAsset } from '../../models/nasa/NasaAsset';
+import { NasaPictureOfDay } from '../../models/nasa/NasaPictureOfDay.mjs';
+import { NasaImage, NasaImageItem } from '../../models/nasa/NasaImage.mjs';
+import { NasaAsset } from '../../models/nasa/NasaAsset.mjs';
 
 @Service()
 export class NasaService {
@@ -29,7 +29,7 @@ export class NasaService {
     await Promise.all([this.getPicture(url + 'galexy'), this.getPicture(url + 'supernova')]).then(
       ([galaxy, supernova]) => {
         images = [...galaxy.collection.items, ...supernova.collection.items];
-      }
+      },
     );
 
     return images;

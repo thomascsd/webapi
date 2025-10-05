@@ -1,7 +1,7 @@
 {
-  "extensions": ["ts"],
+  "extensions": ["ts", "mts"],
   "watch": ["src"],
-  "ignore": ["**/*.spec.ts"],
+  "ignore": ["**/*.spec.ts", "**/*.spec.mts",  "**/*.test.mts"],
   "delay": 100,
   "execMap": {
     "ts": "node --import @swc-node/register/esm-register"

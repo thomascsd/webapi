@@ -1,7 +1,8 @@
-import { MultipartFile, PlatformMulterFile } from '@tsed/common';
+import { MultipartFile } from '@tsed/common';
+import { PlatformMulterFile } from '@tsed/platform-multer';
 import { Controller } from '@tsed/di';
 import { Get, Post } from '@tsed/schema';
-import { ImageFileService } from '../../services/images/ImageFileService';
+import { ImageFileService } from '../../services/images/ImageFileService.mjs';
 
 @Controller('/images')
 export class ImageFileController {

@@ -1,8 +1,8 @@
 import { Service } from '@tsed/di';
 import { compare, hash } from 'bcrypt';
-import { BaseDataService } from '../DataService';
-import { User, Role } from '../../models/vehicle-driving-training';
-import { UserDto, BaseRes, AddUserDto } from '../../dtos';
+import { BaseDataService } from '../DataService.mjs';
+import { User, Role } from '../../models/vehicle-driving-training/Index.mjs';
+import { UserDto, BaseRes, AddUserDto } from '../../dtos/index.mjs';
 
 const BASE_Id = 'appGxC02yunTmPXRh';
 

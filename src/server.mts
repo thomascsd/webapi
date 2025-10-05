@@ -1,12 +1,12 @@
 import { Configuration, Inject } from '@tsed/di';
 import { PlatformApplication } from '@tsed/common';
 import * as multer from 'multer';
-import { ApiController } from './controllers/ApiController';
-import { ClassTransformerPipe } from './pipes/ClassTransformerPipe';
-import { ClassValidationPipe } from './pipes/ClassValidationPipe';
-import { UserDto } from './dtos';
+import { ApiController } from './controllers/ApiController.mjs';
+import { ClassTransformerPipe } from './pipes/ClassTransformerPipe.mjs';
+import { ClassValidationPipe } from './pipes/ClassValidationPipe.mjs';
+import { UserDto } from './dtos/index.mjs';
 import '@tsed/swagger';
-import './protocals';
+import './protocals/index.mjs';
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);

@@ -1,6 +1,6 @@
 import { Controller } from '@tsed/di';
 import { Get, Post } from '@tsed/schema';
-import { MemberService } from '../services/member/MemberService';
+import { MemberService } from '../services/member/MemberService.mjs';
 
 @Controller('/members')
 export class MemberController {

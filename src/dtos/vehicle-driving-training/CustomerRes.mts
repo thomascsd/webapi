@@ -1,4 +1,4 @@
-import { Schedule, Trainer } from '../../models/vehicle-driving-training';
+import { Schedule, Trainer } from '../../models/vehicle-driving-training/Index.mjs';
 
 export class CustomerRes {
   custId: string = '';

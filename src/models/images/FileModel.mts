@@ -1,4 +1,4 @@
-import { FileResponse } from './FileResponse';
+import { FileResponse } from './FileResponse.mjs';
 
 export interface FileModel {
   files: FileResponse[];

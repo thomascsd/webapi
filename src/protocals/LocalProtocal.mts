@@ -4,8 +4,8 @@ import { OnVerify, Protocol } from '@tsed/passport';
 import { Groups } from '@tsed/schema';
 import * as jwt from 'jsonwebtoken';
 import { IStrategyOptions, Strategy } from 'passport-local';
-import { AdminService } from '../services/vehicle-driving-training/AdminService';
-import { UserDto } from '../dtos';
+import { AdminService } from '../services/vehicle-driving-training/AdminService.mjs';
+import { UserDto } from '../dtos/index.mjs';
 
 @Protocol<IStrategyOptions>({
   name: 'local',
@@ -49,7 +49,7 @@ export class LocalProtocol implements OnVerify {
         exp: now + maxAge * 1000,
         iat: now,
       },
-      secretOrKey
+      secretOrKey,
     );
   }
 }

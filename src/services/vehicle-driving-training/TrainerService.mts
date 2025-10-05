@@ -1,8 +1,8 @@
 import { Service } from '@tsed/di';
-import { BaseDataService } from '../DataService';
-import { Trainer } from '../../models/vehicle-driving-training';
-import { TrainerRes } from '../../dtos/vehicle-driving-training/trainerRes';
-import { BaseObj } from '../../dtos';
+import { BaseDataService } from '../DataService.mjs';
+import { Trainer } from '../../models/vehicle-driving-training/Index.mjs';
+import { TrainerRes } from '../../dtos/vehicle-driving-training/TrainerRes.mjs';
+import { BaseObj } from '../../dtos/index.mjs';
 
 const BASE_ID = 'appGxC02yunTmPXRh';
 

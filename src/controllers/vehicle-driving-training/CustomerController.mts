@@ -2,8 +2,8 @@ import { BodyParams } from '@tsed/common';
 import { Controller } from '@tsed/di';
 import { Get, Post } from '@tsed/schema';
 import { Authorize } from '@tsed/passport';
-import { CustomerService } from '../../services/vehicle-driving-training/CustomService';
-import { CustomerDto, CustomerRes, UpdateCustomerDto } from '../../dtos';
+import { CustomerService } from '../../services/vehicle-driving-training/CustomService.mjs';
+import { CustomerDto, CustomerRes, UpdateCustomerDto } from '../../dtos/index.mjs';
 
 @Controller('/customer')
 @Authorize('jwt')

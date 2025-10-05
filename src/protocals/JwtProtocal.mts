@@ -1,7 +1,7 @@
 import { Req } from '@tsed/common';
 import { Arg, OnVerify, Protocol } from '@tsed/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { AdminService } from '../services/vehicle-driving-training/AdminService';
+import { AdminService } from '../services/vehicle-driving-training/AdminService.mjs';
 import { Unauthorized } from '@tsed/exceptions';
 
 @Protocol({

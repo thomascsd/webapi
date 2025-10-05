@@ -1,12 +1,12 @@
 import { BodyParams, Get, Controller, Post } from '@tsed/common';
 import { Authorize } from '@tsed/passport';
-import { Trainer } from '@models/vehicle-driving-training';
-import { TrainerService } from '@services/vehicle-driving-training/TrainerService';
-import { TrainerRes } from '@dtos/vehicle-driving-training/trainerRes';
+import { Trainer } from '@models/vehicle-driving-training/Index.mjs';
+import { TrainerService } from '@services/vehicle-driving-training/TrainerService.mjs';
+import { TrainerRes } from '@dtos/vehicle-driving-training/TrainerRes.mjs';
 
 @Controller('trainer')
 @Authorize('jwt')
-export class TrainerCoontroller {
+export class TrainerController {
   constructor(private trainerService: TrainerService) {}
 
   @Get()

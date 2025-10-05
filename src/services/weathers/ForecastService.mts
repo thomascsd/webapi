@@ -1,6 +1,6 @@
 import { Service, Value } from '@tsed/di';
 import axios from 'axios';
-import { Daily } from '../../models/weathers/daily';
+import { Daily } from '../../models/weathers/daily.mjs';
 
 @Service()
 export class ForecastService {

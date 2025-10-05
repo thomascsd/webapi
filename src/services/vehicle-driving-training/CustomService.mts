@@ -1,7 +1,7 @@
 import { Service } from '@tsed/di';
-import { BaseDataService } from '../DataService';
-import { Customer, Schedule, Trainer } from '../../models/vehicle-driving-training';
-import { BaseObj, CustomerDto, CustomerRes, UpdateCustomerDto } from '../../dtos';
+import { BaseDataService } from '../DataService.mjs';
+import { Customer, Schedule, Trainer } from '../../models/vehicle-driving-training/Index.mjs';
+import { BaseObj, CustomerDto, CustomerRes, UpdateCustomerDto } from '../../dtos/index.mjs';
 
 const BASE_ID = 'appGxC02yunTmPXRh';
 

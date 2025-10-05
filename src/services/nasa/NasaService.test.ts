@@ -2,7 +2,7 @@
 
 import { PlatformTest } from '@tsed/common';
 import axios from 'axios';
-import { NasaService } from './NasaService';
+import { NasaService } from './NasaService.mjs';
 
 /*
 Code Analysis
