@@ -1,7 +1,8 @@
 import { Controller } from '@tsed/di';
 import { Get, Post, Security } from '@tsed/schema';
 import { Authenticate, Authorize } from '@tsed/passport';
-import { BodyParams, Req } from '@tsed/common';
+import { BodyParams } from '@tsed/platform-params';
+import { Req } from '@tsed/platform-http';
 import { AdminService } from '../../services/vehicle-driving-training/AdminService.mjs';
 import { UserDto, AddUserDto } from '../../dtos/index.mjs';
 import { Role, User } from '../../models/vehicle-driving-training/Index.mjs';

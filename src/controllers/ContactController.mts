@@ -2,7 +2,7 @@ import { Controller } from '@tsed/di';
 import { Get, Post } from '@tsed/schema';
 import { ContactService } from '../services/contact/ContactServices.mjs';
 import { Contact } from '../models/Contact.mjs';
-import { BodyParams } from '@tsed/common';
+import { BodyParams } from '@tsed/platform-params';
 
 @Controller('/contact')
 export class ContactController {

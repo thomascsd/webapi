@@ -1,4 +1,4 @@
-import { BodyParams } from '@tsed/common';
+import { BodyParams } from '@tsed/platform-params';
 import { Controller } from '@tsed/di';
 import { Get, Post } from '@tsed/schema';
 import { Authorize } from '@tsed/passport';

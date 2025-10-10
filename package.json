@@ -1,6 +1,6 @@
 {
   "name": "webapi",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "My Web Api",
   "main": "index.js",
   "scripts": {
@@ -22,11 +22,10 @@
     "@swc-node/register": "^1.11.1",
     "@swc/core": "^1.13.5",
     "@swc/helpers": "^0.5.17",
-    "@thomascsd/stools": "^2.0.0",
+    "@thomascsd/stools": "^3.0.0",
     "@tsconfig/node16": "^16.1.5",
     "@tsed/ajv": "^8.17.0",
     "@tsed/barrels": "^6.6.3",
-    "@tsed/common": "^8.17.0",
     "@tsed/core": "^8.17.0",
     "@tsed/di": "^8.17.0",
     "@tsed/engines": "^8.17.0",
@@ -38,6 +37,7 @@
     "@tsed/platform-cache": "^8.17.0",
     "@tsed/platform-exceptions": "^8.17.0",
     "@tsed/platform-express": "^8.17.0",
+    "@tsed/platform-http": "^8.17.3",
     "@tsed/platform-log-middleware": "^8.17.0",
     "@tsed/platform-middlewares": "^8.17.0",
     "@tsed/platform-multer": "^8.17.0",

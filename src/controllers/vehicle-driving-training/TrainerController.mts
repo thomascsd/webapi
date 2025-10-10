@@ -1,5 +1,7 @@
-import { BodyParams, Get, Controller, Post } from '@tsed/common';
+import { BodyParams } from '@tsed/platform-params';
 import { Authorize } from '@tsed/passport';
+import { Controller } from '@tsed/di';
+import { Get, Post } from '@tsed/schema';
 import { Trainer } from '@models/vehicle-driving-training/Index.mjs';
 import { TrainerService } from '@services/vehicle-driving-training/TrainerService.mjs';
 import { TrainerRes } from '@dtos/vehicle-driving-training/TrainerRes.mjs';

@@ -1,5 +1,7 @@
-import { Controller, Get, PathParams } from '@tsed/common';
-import { NasaService } from '../../services/nasa/NasaService.mjs';
+import { Controller } from '@tsed/di';
+import { Get } from '@tsed/schema';
+import { PathParams } from '@tsed/platform-params';
+import { NasaService } from '@services/nasa/NasaService.mjs';
 
 @Controller('/nasa')
 export class NasaController {
