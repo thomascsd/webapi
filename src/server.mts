@@ -1,19 +1,29 @@
 import { Configuration, Inject } from '@tsed/di';
-import { PlatformApplication } from '@tsed/common';
+import { PlatformExpress } from '@tsed/platform-express';
 import * as multer from 'multer';
 import { ApiController } from './controllers/ApiController.mjs';
 import { ClassTransformerPipe } from './pipes/ClassTransformerPipe.mjs';
-import { ClassValidationPipe } from './pipes/ClassValidationPipe.mjs';
 import { UserDto } from './dtos/index.mjs';
 import '@tsed/swagger';
 import './protocals/index.mjs';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 @Configuration({
   mount: {
     '/': [ApiController],
+  },
+  ajv: {
+    // allErrors: true,
+    // verbose: true,
+    // logger: {
+    //   log: console.log,
+    //   warn: console.warn,
+    //   error: console.error,
+    // },
   },
   middlewares: ['cors', 'helmet', 'method-override', 'json-parser'],
   multer: {
@@ -29,9 +39,9 @@ import './protocals/index.mjs';
     disableSession: true,
     userInfoModel: UserDto,
   },
-  imports: [ClassValidationPipe, ClassTransformerPipe],
+  imports: [ClassTransformerPipe],
 })
 export default class Server {
   @Inject()
-  app!: PlatformApplication;
+  app!: PlatformExpress;
 }

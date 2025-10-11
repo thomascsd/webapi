@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsEmail, IsMobilePhone } from 'class-validator';
+import { Required, Email, Pattern } from '@tsed/schema';
 import { BaseModel } from '@thomascsd/stools';
 
 export class Contact extends BaseModel {
@@ -6,20 +6,14 @@ export class Contact extends BaseModel {
     super();
   }
 
-  @IsNotEmpty({
-    message: '姓名為必需填寫',
-  })
+  @Required()
   name: string = '';
 
-  @IsNotEmpty({
-    message: 'Email為必需填寫',
-  })
-  @IsEmail()
+  @Required()
+  @Email()
   email: string = '';
 
-  @IsNotEmpty({
-    message: '手機為必需填寫',
-  })
-  @IsMobilePhone('zh-TW')
+  @Required()
+  @Pattern(/(\d{4})-(\d{6})/)
   mobile: string = '';
 }

@@ -1,55 +1,31 @@
-import {
-  IsNotEmpty,
-  IsEmail,
-  IsMobilePhone,
-  ValidationOptions,
-  Matches,
-  MinLength,
-  MaxLength,
-} from 'class-validator';
+import { Required, Email, Pattern, MinLength, MaxLength } from '@tsed/schema';
 import { plainToClassFromExist } from 'class-transformer';
 import { BaseModel } from '@thomascsd/stools';
 
-const options: ValidationOptions = { message: '填寫正式資料' };
-
 export class Member extends BaseModel {
-  @IsNotEmpty({
-    message: '姓名需填寫',
-  })
+  @Required()
   name = '';
 
-  @IsNotEmpty({
-    message: 'Email需填寫',
-  })
-  @IsEmail()
+  @Required()
+  @Email()
   email = '';
 
-  @IsNotEmpty({
-    message: '手機需填寫',
-  })
-  @IsMobilePhone(
-    'zh-TW',
-    {
-      strictMode: false,
-    },
-    {
-      message: '手機需填寫',
-    }
-  )
+  @Required()
+  @Pattern(/(\d{4})-(\d{6})/)
   mobile = '';
 
   birthday: string = '';
 
-  @IsNotEmpty(options)
-  @MinLength(6, options)
-  @MaxLength(12, options)
-  @Matches(/[a-zA-Z\d]/g, options)
+  @Required()
+  @MinLength(6)
+  @MaxLength(12)
+  @Pattern(/[a-zA-Z\d]/g)
   account = '';
 
-  @IsNotEmpty(options)
-  @MinLength(6, options)
-  @MaxLength(12, options)
-  @Matches(/[a-zA-Z\d]/g, options)
+  @Required()
+  @MinLength(6)
+  @MaxLength(12)
+  @Pattern(/[a-zA-Z\d]/g)
   password = '';
 
   constructor(data?: any) {
