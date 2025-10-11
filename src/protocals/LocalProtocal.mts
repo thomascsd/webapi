@@ -1,11 +1,13 @@
-import { BodyParams, Constant, Req } from '@tsed/common';
 import { Unauthorized } from '@tsed/exceptions';
 import { OnVerify, Protocol } from '@tsed/passport';
 import { Groups } from '@tsed/schema';
 import * as jwt from 'jsonwebtoken';
 import { IStrategyOptions, Strategy } from 'passport-local';
-import { AdminService } from '../services/vehicle-driving-training/AdminService.mjs';
-import { UserDto } from '../dtos/index.mjs';
+import { AdminService } from '@services/vehicle-driving-training/AdminService.mjs';
+import { UserDto } from '@dtos/index.mjs';
+import { Constant } from '@tsed/di';
+import { BodyParams } from '@tsed/platform-params';
+import { Req } from '@tsed/platform-http';
 
 @Protocol<IStrategyOptions>({
   name: 'local',

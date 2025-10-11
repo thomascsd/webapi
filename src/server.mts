@@ -2,7 +2,7 @@ import { Configuration, Inject } from '@tsed/di';
 import { PlatformExpress } from '@tsed/platform-express';
 import * as multer from 'multer';
 import { ApiController } from './controllers/ApiController.mjs';
-import { ClassTransformerPipe } from './pipes/ClassTransformerPipe.mjs';
+
 import { UserDto } from './dtos/index.mjs';
 import '@tsed/swagger';
 import './protocals/index.mjs';
@@ -39,7 +39,6 @@ const __dirname = dirname(__filename);
     disableSession: true,
     userInfoModel: UserDto,
   },
-  imports: [ClassTransformerPipe],
 })
 export default class Server {
   @Inject()

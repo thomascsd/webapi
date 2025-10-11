@@ -1,8 +1,8 @@
 import { Service, Value } from '@tsed/di';
-import axios from 'axios';
-import { NasaPictureOfDay } from '../../models/nasa/NasaPictureOfDay.mjs';
-import { NasaImage, NasaImageItem } from '../../models/nasa/NasaImage.mjs';
-import { NasaAsset } from '../../models/nasa/NasaAsset.mjs';
+import got from 'got';
+import { NasaPictureOfDay } from '@models/nasa/NasaPictureOfDay.mjs';
+import { NasaImage, NasaImageItem } from '@models/nasa/NasaImage.mjs';
+import { NasaAsset } from '@models/nasa/NasaAsset.mjs';
 
 @Service()
 export class NasaService {
@@ -13,8 +13,8 @@ export class NasaService {
     const APOD_ROOT = 'https://api.nasa.gov/planetary/apod';
     const url = `${APOD_ROOT}?count=10&api_key=${this.apiKey}`;
     try {
-      const res = await axios.get<NasaPictureOfDay[]>(url);
-      return res.data;
+      const res = await got.get<NasaPictureOfDay[]>(url);
+      return res.body;
     } catch (error) {
       console.error(error);
       throw new Error('Failed to get picture of day');
@@ -37,11 +37,11 @@ export class NasaService {
 
   async getAsset(nasaId: string): Promise<NasaAsset> {
     const url = `https://images-api.nasa.gov/asset/${nasaId}`;
-    const res = await axios.get<NasaAsset>(url);
-    return res.data;
+    const res = await got.get<NasaAsset>(url);
+    return res.body;
   }
 
   private getPicture(url: string): Promise<NasaImage> {
-    return axios.get<NasaImage>(url).then((res) => res.data);
+    return got.get<NasaImage>(url).then((res) => res.body);
   }
 }

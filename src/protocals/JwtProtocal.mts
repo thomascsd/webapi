@@ -1,4 +1,4 @@
-import { Req } from '@tsed/common';
+import { Req } from '@tsed/platform-http';
 import { Arg, OnVerify, Protocol } from '@tsed/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { AdminService } from '../services/vehicle-driving-training/AdminService.mjs';
