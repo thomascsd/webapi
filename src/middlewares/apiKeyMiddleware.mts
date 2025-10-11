@@ -1,16 +1,23 @@
-import express from 'express';
+import { Context } from '@tsed/platform-params';
+import { Middleware, MiddlewareMethods } from '@tsed/platform-middlewares';
+import { Forbidden, Unauthorized } from '@tsed/exceptions';
+import { ApiKeyService } from '@services/ApiKeyService.mjs';
 
-export function apiKeyMiddleware(
-  request: express.Request,
-  response: express.Response,
-  next?: (err?: unknown) => void
-): any {
-  const apiKey: string = request.header('x-apiKey') || '';
-  const allowedApiKey: string = process.env.ALLOWED_API_KEY || '';
+@Middleware()
+export class ApiKeyMiddleware implements MiddlewareMethods {
+  constructor(private apiKeyService: ApiKeyService) {}
 
-  if (apiKey && allowedApiKey && next && allowedApiKey.includes(apiKey)) {
-    next(null);
-  } else {
-    response.status(401);
+  use(@Context() $ctx: Context) {
+    const apiKey = $ctx.request.headers['x-api-key'] as string;
+
+    if (!apiKey) {
+      throw new Unauthorized('API key is missing');
+    }
+
+    if (!this.apiKeyService.isWhitelisted(apiKey)) {
+      throw new Forbidden('Invalid API key');
+    }
+
+    $ctx.next();
   }
 }
