@@ -1,14 +1,15 @@
-import { Service } from '@tsed/di';
+import { Service, Value } from '@tsed/di';
+import { $log } from '@tsed/logger';
 
 @Service()
 export class ApiKeyService {
-  private readonly whitelist: string[] = [
-    // Add your whitelisted API keys or routes here
-    'api-key-1',
-    'api-key-2',
-  ];
+  constructor() {}
+
+  @Value('API_KEY_WHITELIST')
+  private apiKeyWhitelist!: string;
 
   public isWhitelisted(apiKey: string): boolean {
-    return this.whitelist.includes(apiKey);
+    $log.debug(`API Key Whitelist: ${this.apiKeyWhitelist}`);
+    return this.apiKeyWhitelist.indexOf(apiKey) !== -1;
   }
 }

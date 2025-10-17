@@ -18,6 +18,6 @@ export class ApiKeyMiddleware implements MiddlewareMethods {
       throw new Forbidden('Invalid API key');
     }
 
-    $ctx.next();
+    //$ctx.next();
   }
 }

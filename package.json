@@ -2,9 +2,10 @@
   "name": "webapi",
   "version": "3.0.0",
   "description": "My Web Api",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node --import @swc-node/register/register-esm ./dist/index.mjs",
+    "start": "cross-env NODE_ENV=production node --import @swc-node/register/register-esm ./dist/index.js",
     "dev": "nodemon src/index.ts",
     "barrels": "barrels",
     "build": "tsc",
