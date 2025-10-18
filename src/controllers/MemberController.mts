@@ -1,14 +1,20 @@
-import { Controller } from '@tsed/di';
+import { AirtableResult } from '@thomascsd/stools';
+import { Controller, inject } from '@tsed/di';
 import { Get, Post } from '@tsed/schema';
-import { MemberService } from '../services/member/MemberService.mjs';
+import { Member } from '@models/members/Member.mjs';
+import { MemberService } from '@services/member/MemberService.mjs';
 
 @Controller('/members')
 export class MemberController {
-  constructor(private memberService: MemberService) {}
+  private memberService: MemberService = inject(MemberService);
 
   @Get('/list')
-  getMembers() {}
+  getMembers(): Promise<Member[]> {
+    return this.memberService.getMembers();
+  }
 
   @Post('/save')
-  saveMember() {}
+  saveMember(member: Member): Promise<AirtableResult> {
+    return this.memberService.saveMember(member);
+  }
 }

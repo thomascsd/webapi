@@ -1,17 +1,17 @@
 import { Controller } from '@tsed/di';
-// import { ImageFileController } from './images/ImageFileController.mjs';
+import { UseBefore } from '@tsed/platform-middlewares';
+import { ImageFileController } from './images/ImageFileController.mjs';
 import { ForecastController } from './weathers/forcastController.mjs';
 import { ContactController } from './ContactController.mjs';
 import { NasaController } from './nasa/NasaController.mjs';
 import { AdminController } from './vehicle-driving-training/AdminController.mjs';
-import { UseBefore } from '@tsed/platform-middlewares';
 import { ApiKeyMiddleware } from '@middlewares/apiKeyMiddleware.mjs';
 
 @UseBefore(ApiKeyMiddleware)
 @Controller({
   path: '/api',
   children: [
-    // ImageFileController,
+    ImageFileController,
     ForecastController,
     ContactController,
     NasaController,
