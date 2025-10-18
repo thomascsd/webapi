@@ -5,10 +5,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node --import @swc-node/register/register-esm ./dist/index.js",
+    "start": "cross-env NODE_ENV=production node ./dist/index.js",
     "dev": "nodemon src/index.ts",
     "barrels": "barrels",
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
     "test": "echo \"Error: no test specified\" && exit 1",
     "cpy": "cpy src/.env dist --flat"
   },
@@ -92,6 +92,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "nodemon": "^3.1.10",
     "supertest": "^7.1.4",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16"
   }
 }
