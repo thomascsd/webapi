@@ -14,11 +14,11 @@ async function bootstrap() {
   try {
     $log.debug('Start server...');
 
-    if (process.env.MODE === 'dev') {
+    if (process.env.NODE_ENV === 'dev') {
       httpPort = '127.0.0.1:8080';
     }
 
-    $log.debug(`MODE:${process.env.MODE}`);
+    $log.debug(`NODE_ENV:${process.env.NODE_ENV}`);
     $log.debug(`httpPort:${httpPort}`);
 
     const configObj = {
