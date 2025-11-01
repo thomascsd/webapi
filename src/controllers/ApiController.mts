@@ -6,6 +6,8 @@ import { ContactController } from './ContactController.mjs';
 import { NasaController } from './nasa/NasaController.mjs';
 import { AdminController } from './vehicle-driving-training/AdminController.mjs';
 import { ApiKeyMiddleware } from '@middlewares/apiKeyMiddleware.mjs';
+import { MemberController } from './MemberController.mjs';
+import { CountyController } from './CountryController.mjs';
 
 @UseBefore(ApiKeyMiddleware)
 @Controller({
@@ -16,6 +18,8 @@ import { ApiKeyMiddleware } from '@middlewares/apiKeyMiddleware.mjs';
     ContactController,
     NasaController,
     AdminController,
+    CountyController,
+    MemberController,
   ],
 })
 export class ApiController {}

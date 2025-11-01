@@ -1,9 +1,11 @@
+import { Service } from '@tsed/di';
 import { County } from '../../models/members/County.mjs';
 import { Distinct } from '../../models/members/Distinct.mjs';
 import { BaseDataService } from '../DataService.mjs';
 
 const BASE_ID = 'appYytqUfVu81cjXn';
 
+@Service()
 export class CountyService {
   constructor(private db: BaseDataService) {}
 
