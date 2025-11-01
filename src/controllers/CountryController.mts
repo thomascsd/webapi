@@ -1,5 +1,6 @@
 import { CountyService } from '@services/member/CountryService.mjs';
 import { Controller, inject } from '@tsed/di';
+import { PathParams } from '@tsed/platform-params';
 import { Get } from '@tsed/schema';
 
 @Controller({
@@ -14,7 +15,7 @@ export class CountyController {
   }
 
   @Get('/districts/:countyCode')
-  getDistricts(countyCode: string) {
+  getDistricts(@PathParams('countyCode') countyCode: string) {
     return this.countryService.getDistincts(countyCode);
   }
 }
