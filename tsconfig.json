@@ -26,7 +26,8 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "declaration": false,
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "types": ["node"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
