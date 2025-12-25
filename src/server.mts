@@ -2,15 +2,10 @@ import { Configuration, Inject } from '@tsed/di';
 import { PlatformExpress } from '@tsed/platform-express';
 import * as multer from 'multer';
 import { ApiController } from './controllers/ApiController.mjs';
-
 import { UserDto } from './dtos/index.mjs';
 import '@tsed/swagger';
 import './protocals/index.mjs';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import './filters/ErrorFilter.mjs';
 
 @Configuration({
   mount: {
