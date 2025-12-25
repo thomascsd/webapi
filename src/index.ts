@@ -1,12 +1,7 @@
 import { $log } from '@tsed/logger';
 import { PlatformExpress } from '@tsed/platform-express';
 import Server from './server.mjs';
-import dotenv from 'dotenv';
 import 'reflect-metadata';
-
-const config = dotenv.config({
-  path: '.env',
-});
 
 async function bootstrap() {
   let httpPort: string | number = 8080;
@@ -22,7 +17,6 @@ async function bootstrap() {
     $log.debug(`httpPort:${httpPort}`);
 
     const configObj = {
-      ...config.parsed,
       httpPort,
     };
 

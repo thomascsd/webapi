@@ -16,7 +16,7 @@ Methods:
 
 Fields:
 - apiUrl: This field stores the base URL for the Weatherbit API.
-- apiKey: This field is annotated with @Value('WEATHERBIT_API_KEY') and is used to inject the API key from the environment. It stores the API key used to authenticate requests to the Weatherbit API.
+- apiKey: This field is annotated with @Constant('envs.WEATHERBIT_API_KEY') and is used to inject the API key from the environment. It stores the API key used to authenticate requests to the Weatherbit API.
 */
 
 describe('ForecastService_class', () => {

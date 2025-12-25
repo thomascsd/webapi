@@ -1,8 +1,8 @@
 import { DataService } from '@thomascsd/stools';
-import { Service, Value } from '@tsed/di';
+import { Constant, Service } from '@tsed/di';
 
 @Service()
 export class BaseDataService extends DataService {
-  @Value('AIRTABLE_API')
+  @Constant('envs.AIRTABLE_API')
   apiKey!: string;
 }

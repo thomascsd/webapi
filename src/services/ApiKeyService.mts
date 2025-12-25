@@ -6,10 +6,10 @@ export class ApiKeyService {
   @Inject()
   logger!: Logger;
 
-  constructor() {}
-
-  @Constant('API_KEY_WHITELIST')
+  @Constant('envs.API_KEY_WHITELIST')
   private apiKeyWhitelist!: string;
+
+  constructor() {}
 
   public isWhitelisted(apiKey: string): boolean {
     this.logger.debug(`API Key Whitelist: ${this.apiKeyWhitelist}`);

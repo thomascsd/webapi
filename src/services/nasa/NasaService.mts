@@ -1,4 +1,4 @@
-import { Service, Value } from '@tsed/di';
+import { Service, Constant } from '@tsed/di';
 import got from 'got';
 import { NasaPictureOfDay } from '@models/nasa/NasaPictureOfDay.mjs';
 import { NasaImage, NasaImageItem } from '@models/nasa/NasaImage.mjs';
@@ -6,7 +6,7 @@ import { NasaAsset } from '@models/nasa/NasaAsset.mjs';
 
 @Service()
 export class NasaService {
-  @Value('NASA_API')
+  @Constant('envs.NASA_API')
   apiKey!: string;
 
   async getPictureOfDay() {
